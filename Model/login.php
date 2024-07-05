@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
         </script>
     ";
 
-    header("refresh: 1; url=../View/html/nav_logado.php");
+    header("refresh: 1; url=../View/html/nav.php");
     exit();
 } else {
     echo "

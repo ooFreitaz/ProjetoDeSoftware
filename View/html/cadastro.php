@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="../css/_cadastro.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
             <input type="password" name="senha" id="senha" class="input" required>
             <input type="checkbox" id="mostrarSenha" class="show-password">
                 
-            <div id="senha-feedback"></div> <!-- Feedback da senha -->
+            <div id="senha-feedback">Força da Senha</div> <!-- Feedback da senha -->
             <button type="submit">Cadastrar</button>
         </div>
         <div>Já tem cadastro? <a href="logintela.php">Faça login</a></div>

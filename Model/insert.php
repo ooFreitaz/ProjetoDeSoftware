@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         alert(\"Registrado com sucesso!.\");
     </script>";
 
-    header("refresh: 1; url=../View/html/nav_logado.php");
+    header("refresh: 1; url=../View/html/nav.php");
     exit();
     } else {
     // Email já cadastrado

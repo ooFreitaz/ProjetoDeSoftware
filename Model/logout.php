@@ -8,6 +8,6 @@ session_unset();
 session_destroy();
 
 // Redireciona para a página nav.html
-header("Location: ../View/html/nav.php");
+header("Location: ../index.php");
 exit();
 ?>
