@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{font-family: "Kanit", sans-serif;}
+
+
+.button {
+    background-color: #4CAF50; /* Cor de fundo */
+    border: none;              /* Sem borda */
+    color: white;              /* Cor do texto */
+    padding: 15px 32px;        /* Espaçamento interno */
+    text-align: center;        /* Alinhamento do texto */
+    text-decoration: none;     /* Sem sublinhado */
+    display: inline-block;     /* Exibição inline-block */
+    font-size: 16px;           /* Tamanho da fonte */
+    margin: 4px 2px;           /* Margem */
+    cursor: pointer;           /* Cursor de ponteiro */
+    border-radius: 8px;        /* Bordas arredondadas */
+    font-family: "Kanit", sans-serif;
+}
+
+.button:hover {
+    background-color: #45a049; /* Cor de fundo ao passar o mouse */
+}
+
+.link {
+    color: #ffffff; /* Cor do texto branco */
+    background-color: #152b28; 
+    text-decoration: none; /* Sem sublinhado */
+    font-weight: bold; /* Negrito */
+    padding: 10px 20px; /* Espaçamento interno maior */
+    border-radius: 8px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
+    display: inline-block; /* Exibição inline-block para espaçamento de padding funcionar corretamente */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.link:hover {
+    background-color: #000000; /* Cor de fundo vermelha ao passar o mouse */
+    color: #ffffff; /* Cor do texto branco ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Sombra mais forte ao passar o mouse */
+}
