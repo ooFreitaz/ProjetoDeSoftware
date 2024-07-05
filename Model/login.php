@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $email = $_POST['email'];
 $password = $_POST['senha'];
 
-$sql = "SELECT * FROM usuario WHERE email='$email' AND senha='$password'";
+$sql = "SELECT * FROM editor WHERE email='$email' AND senha='$password'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

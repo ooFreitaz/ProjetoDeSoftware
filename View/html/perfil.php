@@ -20,7 +20,7 @@ if(isset($_SESSION['id'])) {
 require ('../../Controller/conexao.php');
 
 function listarRegistro($conexao, $id) {
-    $sql = "SELECT * FROM usuario WHERE id=:id";
+    $sql = "SELECT * FROM editor WHERE id=:id";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();

@@ -15,6 +15,6 @@
 .link:hover {
     background-color: #000000; /* Cor de fundo vermelha ao passar o mouse */
     color: #ffffff; /* Cor do texto branco ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Sombra mais forte ao passar o mouse */
+    transform: scale(1.017); /* Leve aumento no tamanho ao passar o mouse */
+
 }

@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];
 
     function deletarRegistro($conexao, $id) {
-        $sql = "DELETE FROM usuario WHERE id = :id";
+        $sql = "DELETE FROM editor WHERE id = :id";
         $stmt = $conexao->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script type=\"text/javascript\">
             alert(\"Conta deletada com sucesso.\");
         </script>";
-        header("refresh: 1; url=../View/html/cadastro.php");
+        header("refresh: 1; url=../index.php");
         exit();
     } else {
         echo "
