@@ -15,3 +15,5 @@ function confirmarDelecao() {
         window.location.href = "perfil.php"; // Redireciona para a página nav_logado.php
     }
 }
+
+

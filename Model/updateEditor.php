@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Função para Atualizar o registro no banco de dados
         function atualizarRegistro($conexao, $id, $nome, $cpf, $email, $senha) {
-            $sql = "UPDATE usuario SET nome = :nome, cpf = :cpf, email = :email, senha = :senha WHERE id = :id";
+            $sql = "UPDATE editor SET nome = :nome, cpf = :cpf, email = :email, senha = :senha WHERE id = :id";
             $stmt = $conexao->prepare($sql);
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':cpf', $cpf);
