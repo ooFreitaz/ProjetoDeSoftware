@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login de Usuário</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/logintela.css">
 </head>
 <body>
-
+    
     <form action="../../Model/login.php" method="post">
         <div><h1>Faça Login</h1></div>
         <div id="form">
