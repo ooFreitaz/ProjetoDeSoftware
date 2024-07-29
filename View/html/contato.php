@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Contato</title>
-    <link rel="stylesheet" href="../css/contato.css">
+    <link rel="stylesheet" href="../css/contatos.css">
 </head>
 <body>
     <div class="container">

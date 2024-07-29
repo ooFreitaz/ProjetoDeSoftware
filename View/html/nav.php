@@ -21,7 +21,7 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="contato.php" class="nav-link px-2">Contato</a></li>
-        <li><a href="#" class="nav-link px-2">Sobre</a></li>
+        <li><a href="sobre.html" class="nav-link px-2">Sobre</a></li>
       </ul>
 
      <div class="btn-group col-3 text-end" role="group" aria-label="Basic outlined example">

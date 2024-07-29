@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
+body{width: 100%;
+    margin: 0;
+    background-color: rgb(230, 230, 230);
+    background-color: #f8f9fa;
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+}
+
+#sobre-nos{
+    padding: 180px 90px;}
+
+#sobre-nos-conteudo{
+    background-color: #ffffff;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#sobre-nos-conteudo>h3{
+    color: blue;
+}
+
+#sobre-nos-conteudo>p{
+    font-size: 18px;
+}

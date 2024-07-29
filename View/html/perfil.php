@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" type="text/css" href="../css/_perfil.css">
+    <link rel="stylesheet" type="text/css" href="../css/perfi.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="nav.php" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <h3>FindEditor</h3>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="nav.php" class="nav-link px-2">Home</a></li>
+        <li><a href="contato.php" class="nav-link px-2">Contato</a></li>
+        <li><a href="sobre.html" class="nav-link px-2">Sobre</a></li>
+      </ul>
+    </header>
+  </div>
 <?php
 session_start();
 
@@ -31,27 +48,37 @@ $registro = listarRegistro($conexao, $id);
 
 if ($registro) {
 ?>
-    <form action="../../Model/update.php" method="post" id="dados">
-        <label>CPF:</label>
-        <input type="text" name="cpf" id="cpf" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
-        <br>
+    <form action="../../Model/updateEditor.php" method="post" id="dados">
+        <div id="div-dados">
+            <div class="conjunto-dados">
+                <label>CPF:</label>
+                <input class = "input" type="text" name="cpf" id="cpf" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
+                <br>
+            </div>
         
-        <label>Nome:</label>
-        <input type="text" name="nome" value="<?php echo $registro['nome']; ?>" required>
-        <br>
+            <div class="conjunto-dados">
+                <label>Nome:</label>
+                <input class = "input" type="text" name="nome" value="<?php echo $registro['nome']; ?>" required>
+                <br>
+            </div>
 
-        <label>Email: </label>
-        <input type="text" name="email" value="<?php echo $registro['email']; ?>" required>
-        <br>
+            <div class="conjunto-dados">
+                <label>Email: </label>
+                <input class = "input" type="text" name="email" value="<?php echo $registro['email']; ?>" required>
+                <br>
+            </div>
 
-        <label>Senha:</label>
-        <input type="text" name="senha" value="<?php echo $registro['senha']; ?>" required>
-        <br>
+            <div class="conjunto-dados">
+                <label>Senha:</label>
+                <input class = "input" type="text" name="senha" value="<?php echo $registro['senha']; ?>" required>
+                <br>
+            </div>
 
-        <button class="button" type="submit">Alterar</button>
+        </div>
+        <button class="botao" type="submit">Alterar</button>
     </form>
 
-    <button class="button" onclick="confirmarDelecao()">Deletar Conta</button>
+    <button class="botao-delete" onclick="confirmarDelecao()">Deletar Conta</button>
 
     <form id="formDeletarConta" action="../../Model/delete.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
