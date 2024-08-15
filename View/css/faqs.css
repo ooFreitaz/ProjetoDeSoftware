@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{width: 100%;
+    margin: 0;
+    background-color: #f8f9fa;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#div2 {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    width: 100%;
+    justify-items: center;
+    padding-top: 10%;
+    height: 75vh;
+    gap: 2%;
+}
+
+.numescondido {
+    position: absolute;
+    top: 1%;
+    font-size: 128px;
+    color: rgba(0, 0, 0, 0.05);
+    font-weight: 900;
+    top: -4rem;
+    left: -3rem;
+}
+
+.parte2 {
+    position: relative;
+    z-index: 111;
+}
+
+.parte2> h1 {
+    font-size: 32px;
+    color: #4d4d4d;
+    margin: 0;
+    font-weight: 500;
+    z-index: 111;
+}
+
+.parte2> p {
+    margin-top: 0;
+    font-size: 16px;
+    color: #4d4d4d;
+    z-index: 111;
+}

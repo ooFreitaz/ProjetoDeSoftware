@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem Vindo!</title>
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="../css/navs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
 </head>
@@ -19,9 +19,10 @@
       </div>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="nav.php" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="contato.php" class="nav-link px-2">Contato</a></li>
         <li><a href="sobre.html" class="nav-link px-2">Sobre</a></li>
+        <li><a href="faq.html" class="nav-link px-2">FAQ</a></li>
       </ul>
 
      <div class="btn-group col-3 text-end" role="group" aria-label="Basic outlined example">

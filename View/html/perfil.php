@@ -21,6 +21,7 @@
         <li><a href="nav.php" class="nav-link px-2">Home</a></li>
         <li><a href="contato.php" class="nav-link px-2">Contato</a></li>
         <li><a href="sobre.html" class="nav-link px-2">Sobre</a></li>
+        <li><a href="faq.html" class="nav-link px-2">FAQ</a></li>
       </ul>
     </header>
   </div>
