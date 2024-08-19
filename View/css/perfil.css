@@ -94,3 +94,15 @@ body{width: 100%;
     visibility: hidden;
 }
 
+
+.profile-picture {
+    width: 150px;  /* Largura da imagem */
+    height: 150px; /* Altura da imagem */
+    object-fit: cover;  /* Corta a imagem para preencher o container */
+    border-radius: 50%; /* Deixa a imagem circular */
+    border: 2px solid #ddd; /* Borda ao redor da imagem (opcional) */
+}
+
+.rounded-circle{
+    object-fit: cover;
+}
