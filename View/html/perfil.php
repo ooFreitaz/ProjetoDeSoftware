@@ -8,9 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-
-
-
 <?php
 session_start();
 
@@ -45,8 +42,8 @@ if ($registro) {
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="nav.php" class="nav-link px-2 link-secondary">Home</a></li>
           <li><a href="contato.php" class="nav-link px-2 link-body-emphasis">Contato</a></li>
-          <li><a href="sobre.html" class="nav-link px-2 link-body-emphasis">Sobre</a></li>
-          <li><a href="faq.html" class="nav-link px-2 link-body-emphasis">FAQ</a></li>
+          <li><a href="sobre.php" class="nav-link px-2 link-body-emphasis">Sobre</a></li>
+          <li><a href="faq.php" class="nav-link px-2 link-body-emphasis">FAQ</a></li>
         </ul>
 
 
