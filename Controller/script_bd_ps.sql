@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `servico` (
   `imagens` VARCHAR(50) NOT NULL,
   `linksYoutube` VARCHAR(50) NOT NULL
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB;
 
 
 

@@ -65,3 +65,9 @@ input[type="submit"]:hover {
 .rounded-circle{
     object-fit: cover;
 }
+
+#contatoConteudo{
+    width: 70%;
+    margin: auto;
+
+}
