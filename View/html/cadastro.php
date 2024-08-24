@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="../css/cadastroEditors.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
 </head>
 <body>
 
     <?php require ("../../Controller/conexao.php"); ?>
    
-    <form action="../../Model/insertEditor.php" method="post" id="cadastroForm">
+    <form action="../../Model/insert.php" method="post" id="cadastroForm">
         <div><h1>Cadastre-se</h1></div>
         <div id="form">
             <label for="nome" class="label">Nome</label>

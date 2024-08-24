@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seja Bem Vindo!</title>
-    <link rel="stylesheet" href="../css/navs.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
-</head>
-<body>
 <?php session_start();
 
 if(isset($_SESSION['id'])) {
@@ -21,15 +10,29 @@ if(isset($_SESSION['id'])) {
 require ('../../Controller/conexao.php');
 
 function listarRegistro($conexao, $id) {
-    $sql = "SELECT * FROM editor WHERE id=:id";
+    $sql = "SELECT * FROM usuario WHERE id=:id";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-$registro = listarRegistro($conexao, $id);?>
+$registro = listarRegistro($conexao, $id);
 
+if ($registro) {
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja Bem Vindo!</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+</head>
+<body>
 
 <header class="p-3 mb-3 border-bottom">
     <div class="container">
@@ -48,7 +51,7 @@ $registro = listarRegistro($conexao, $id);?>
 
         <div class="dropdown text-end">
           <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../../uploads/<?php echo $registro['foto_perfil']; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
@@ -68,3 +71,9 @@ $registro = listarRegistro($conexao, $id);?>
 </body>
 
 </html>
+
+<?php
+} else {
+    echo "<p>Usuário não encontrado.</p>";
+}
+?>

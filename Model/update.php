@@ -12,29 +12,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $senha = $_POST["senha"];
 
         // Inicializar variável para o caminho da foto de perfil
-        $foto_perfil = null;
+        $fotoPerfil = null;
 
         // Processar a imagem de perfil se enviada
-        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+        if (isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] === UPLOAD_ERR_OK) {
             $diretorio_upload = '../uploads/';
-            $nome_arquivo = basename($_FILES['foto_perfil']['name']);
+            $nome_arquivo = basename($_FILES['fotoPerfil']['name']);
             $caminho_arquivo = $diretorio_upload . $nome_arquivo;
 
             // Mover o arquivo para o diretório de upload
-            if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $caminho_arquivo)) {
-                $foto_perfil = $caminho_arquivo;
+            if (move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $caminho_arquivo)) {
+                $fotoPerfil = $caminho_arquivo;
             }
         }
 
         // Função para Atualizar o registro no banco de dados
-        function atualizarRegistro($conexao, $id, $nome, $cpf, $email, $senha, $foto_perfil) {
+        function atualizarRegistro($conexao, $id, $nome, $cpf, $email, $senha, $fotoPerfil) {
             // Preparar a query dependendo se a foto de perfil foi enviada ou não
-            if ($foto_perfil) {
-                $sql = "UPDATE editor SET nome = :nome, cpf = :cpf, email = :email, senha = :senha, foto_perfil = :foto_perfil WHERE id = :id";
+            if ($fotoPerfil) {
+                $sql = "UPDATE usuario SET nome = :nome, cpf = :cpf, email = :email, senha = :senha, fotoPerfil = :fotoPerfil WHERE id = :id";
                 $stmt = $conexao->prepare($sql);
-                $stmt->bindParam(':foto_perfil', $foto_perfil);
+                $stmt->bindParam(':fotoPerfil', $fotoPerfil);
             } else {
-                $sql = "UPDATE editor SET nome = :nome, cpf = :cpf, email = :email, senha = :senha WHERE id = :id";
+                $sql = "UPDATE usuario SET nome = :nome, cpf = :cpf, email = :email, senha = :senha WHERE id = :id";
                 $stmt = $conexao->prepare($sql);
             }
             $stmt->bindParam(':nome', $nome);
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return $stmt->execute();
         }
 
-        if (atualizarRegistro($conexao, $id, $nome, $cpf, $email, $senha, $foto_perfil)) {
+        if (atualizarRegistro($conexao, $id, $nome, $cpf, $email, $senha, $fotoPerfil)) {
             echo "
             <script type=\"text/javascript\">
                 alert(\"Informações alteradas com sucesso!\");

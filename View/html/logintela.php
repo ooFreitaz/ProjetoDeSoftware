@@ -17,7 +17,7 @@
             <input type="password" name="senha" class="input" required>
             <button>Login</button>
         </div>
-        <div>Não tem cadastro? <a href="../../index.php">Cadastre-se aqui</a></div>
+        <div>Não tem cadastro? <a href="cadastro.php">Cadastre-se aqui</a></div>
     </form>
     
 

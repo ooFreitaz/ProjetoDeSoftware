@@ -2,22 +2,27 @@ CREATE DATABASE BD_PROJETOSOFTWARE;
 
 USE BD_PROJETOSOFTWARE;
 
-DROP TABLE IF EXISTS `editor`;
-CREATE TABLE IF NOT EXISTS `editor` (
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `cpf` CHAR(14) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
+  `fotoPerfil` VARCHAR(255),
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `cliente`;
-CREATE TABLE IF NOT EXISTS `cliente` (
+DROP TABLE IF EXISTS `servico`;
+CREATE TABLE IF NOT EXISTS `servico` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) NOT NULL,
-  `email` VARCHAR(50) NOT NULL,
-  `senha` VARCHAR(50) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `valor` VARCHAR(50) NOT NULL,
+  `categoria` VARCHAR(50) NOT NULL,
+  `descricao` VARCHAR(255) NOT NULL,
+  `prazoEntrega` VARCHAR(20) NOT NULL,
+  `imagens` VARCHAR(50) NOT NULL,
+  `linksYoutube` VARCHAR(50) NOT NULL
   PRIMARY KEY (`id`)
 );
 

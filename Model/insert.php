@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     function inserirRegistro($conexao, $nome, $cpf, $email, $senha) {
         // Verificar se o email já existe
-        $sql_verifica = "SELECT COUNT(*) AS total FROM editor WHERE email = :email";
+        $sql_verifica = "SELECT COUNT(*) AS total FROM usuario WHERE email = :email";
         $stmt_verifica = $conexao->prepare($sql_verifica);
         $stmt_verifica->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt_verifica->execute();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return false;
         } else {
             // Se o email não existe, proceder com a inserção
-            $sql = "INSERT INTO editor (nome, cpf, email, senha) VALUES (:nome, :cpf, :email, :senha)";
+            $sql = "INSERT INTO usuario (nome, cpf, email, senha) VALUES (:nome, :cpf, :email, :senha)";
             $stmt = $conexao->prepare($sql);
             $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
             $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
     // Email já cadastrado
     echo "
-    <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=../View/html/cadastroEditor.php'>
+    <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=../View/html/cadastro.php'>
     <script type=\"text/javascript\">
         alert(\"Erro: Este email já está em uso.\");
     </script>

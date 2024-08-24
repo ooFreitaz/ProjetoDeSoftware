@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];
 
     function deletarRegistro($conexao, $id) {
-        $sql = "DELETE FROM editor WHERE id = :id";
+        $sql = "DELETE FROM usuario WHERE id = :id";
         $stmt = $conexao->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
