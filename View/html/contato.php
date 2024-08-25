@@ -29,7 +29,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Contato</title>
-    <link rel="stylesheet" href="../css/contatos.css">
+    <link rel="stylesheet" href="../css/contato.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -59,20 +59,32 @@ if ($registro) {
             <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
             <li><a class="dropdown-item" href="#">Favoritos</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Log out</a></li>
+            <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
 
+  <form id="logout-form" action="../../Model/logout.php" method="POST" style="display: none;">
+    <input type="hidden" name="logout" value="1">
+  </form>
 
+
+
+
+
+
+
+  
     <div class="container">
-      <div id="contatoConteudo">
-        <h1>Contato</h1>
+      <div id="contatoDiv">
+        <div id="contatoConteudo">
+
+        </div><h1>Contato</h1>
         <form action="../../Model/sendContato.php" method="POST">
             <label for="message">Mensagem:</label>
-            <textarea id="message" name="message" required></textarea><br>
+            <textarea id="message" name="message" required placeholder="Escreva sua mensagem aqui..."></textarea><br>
             <input type="submit" value="Enviar">
         </form>
       </div>

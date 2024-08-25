@@ -59,19 +59,29 @@ if ($registro) {
             <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
             <li><a class="dropdown-item" href="#">Favoritos</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Log out</a></li>
+            <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
 
+  <form id="logout-form" action="../../Model/logout.php" method="POST" style="display: none;">
+    <input type="hidden" name="logout" value="1">
+  </form>
+
+
+
+
+
+
+
     <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" alt="Foto de Perfil" class="profile-picture">
     <form action="../../Model/update.php" method="post" enctype="multipart/form-data" id="dados">
         <div id="div-dados">
             <div class="conjunto-dados">
                 <label>CPF:</label>
-                <input class = "input" type="text" name="cpf" id="cpf" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
+                <input class = "input" type="text" name="cpf" id="cpf" minlength="14" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
                 <br>
             </div>
         
@@ -99,15 +109,21 @@ if ($registro) {
               <br>
             </div>
         </div>
-        <button class="botao" type="submit">Alterar</button>
+        <button class="botao" type="submit" onclick="return validateCPF()">Alterar</button>
     </form>
 
-    <button class="botao-delete" onclick="confirmarDelecao()">Deletar Conta</button>
 
+    <button class="botao-delete" onclick="confirmarDelecao()">Deletar Conta</button>
     <form id="formDeletarConta" action="../../Model/delete.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
     </form>
 
+
+
+
+
+
+    
     <script src="../js/funcoes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

@@ -59,14 +59,23 @@ if ($registro) {
             <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
             <li><a class="dropdown-item" href="#">Favoritos</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Log out</a></li>
+            <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
 
+  <form id="logout-form" action="../../Model/logout.php" method="POST" style="display: none;">
+    <input type="hidden" name="logout" value="1">
+  </form>
 
+  
+
+
+
+
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

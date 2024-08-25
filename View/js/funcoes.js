@@ -12,8 +12,15 @@ function confirmarDelecao() {
     if (confirm("Tem certeza que deseja deletar sua conta? Essa ação não pode ser desfeita.")) {
         document.getElementById("formDeletarConta").submit();
     } else {
-        window.location.href = "perfil.php"; // Redireciona para a página nav_logado.php
+        window.location.href = "perfil.php"; 
     }
 }
 
-
+function validateCPF() {
+    var cpf = document.getElementById('cpf').value;
+    if (cpf.length < 14) {
+        alert('Por favor, insira um CPF completo.');
+        return false; // Impede o envio do formulário
+    }
+    return true; // Permite o envio do formulário
+}

@@ -66,8 +66,16 @@ input[type="submit"]:hover {
     object-fit: cover;
 }
 
-#contatoConteudo{
+#contatoDiv{
     width: 70%;
+    height: 73vh;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+       
+}
 
+#message{
+    height: 25vh;
 }
