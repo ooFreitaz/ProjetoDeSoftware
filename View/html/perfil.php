@@ -54,10 +54,10 @@ if ($registro) {
             <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Criar Serviço</a></li>
-            <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
-            <li><a class="dropdown-item" href="#">Favoritos</a></li>
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
+            <li><a class="dropdown-item" href="meusServicos.php">Meus Serviços</a></li>
+            <li><a class="dropdown-item" href="favoritos.php">Favoritos</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>
