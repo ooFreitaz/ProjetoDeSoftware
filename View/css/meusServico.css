@@ -12,3 +12,16 @@ body{width: 100%;
 }
 
 
+.myServicesContent
+{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.myServicesContent > h2
+{
+    margin: 4vh 0 ;
+}
+.card-img-top
+{
+    height: 44vh;
+}

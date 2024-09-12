@@ -3,7 +3,7 @@
 if(isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 } else {
-    header("Location: faqDeslogado.php");
+    header("Location: sobreDeslogado.php");
     exit();
 }
 

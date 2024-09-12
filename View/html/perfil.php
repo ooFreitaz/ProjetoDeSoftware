@@ -4,7 +4,7 @@ session_start();
 if(isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 } else {
-    echo "<p>Usuário não está logado.</p>";
+    header("Location: logintela.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" type="text/css" href="../css/perfil.css">
+    <link rel="stylesheet" type="text/css" href="../css/perfi.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -75,48 +75,50 @@ if ($registro) {
 
 
 
+  <div id="UpdateDataContent">
+    <div id="UpdateDeleteDataContent">
+      <form action="../../Model/update.php" method="post" enctype="multipart/form-data" id="dados">
+            <div id="div-dados">
 
-    <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" alt="Foto de Perfil" class="profile-picture">
-    <form action="../../Model/update.php" method="post" enctype="multipart/form-data" id="dados">
-        <div id="div-dados">
-            <div class="conjunto-dados">
-                <label>CPF:</label>
-                <input class = "input" type="text" name="cpf" id="cpf" minlength="14" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
-                <br>
+                <div class="conjunto-dados">
+                    <label>CPF:</label>
+                    <input class = "input" type="text" name="cpf" id="cpf" minlength="14" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
+                </div>
+
+                <div class="conjunto-dados">
+                    <label>Nome:</label>
+                    <input class = "input" type="text" name="nome" value="<?php echo $registro['nome']; ?>" required>
+                </div>
+
+                <div class="conjunto-dados">
+                    <label>Email: </label>
+                    <input class = "input" type="text" name="email" value="<?php echo $registro['email']; ?>" required>
+                </div>
+
+                <div class="conjunto-dados">
+                    <label>Senha:</label>
+                    <input class = "input" type="text" name="senha" value="<?php echo $registro['senha']; ?>" required>
+                </div>
+
+                 <div class="conjunto-dados">
+                  <label>Foto de Perfil:</label>
+                  <input type="file" name="fotoPerfil" accept="image/*">
+                </div>
             </div>
-        
-            <div class="conjunto-dados">
-                <label>Nome:</label>
-                <input class = "input" type="text" name="nome" value="<?php echo $registro['nome']; ?>" required>
-                <br>
-            </div>
-
-            <div class="conjunto-dados">
-                <label>Email: </label>
-                <input class = "input" type="text" name="email" value="<?php echo $registro['email']; ?>" required>
-                <br>
-            </div>
-
-            <div class="conjunto-dados">
-                <label>Senha:</label>
-                <input class = "input" type="text" name="senha" value="<?php echo $registro['senha']; ?>" required>
-                <br>
-            </div>
-
-             <div class="conjunto-dados">
-              <label>Foto de Perfil:</label>
-              <input type="file" name="fotoPerfil" accept="image/*">
-              <br>
-            </div>
-        </div>
-        <button class="botao" type="submit" onclick="return validateCPF()">Alterar</button>
-    </form>
+            <button class="botao" type="submit" onclick="return validateCPF()">Alterar</button>
+      </form>
 
 
-    <button class="botao-delete" onclick="confirmarDelecao()">Deletar Conta</button>
-    <form id="formDeletarConta" action="../../Model/delete.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-    </form>
+      <button class="botao-delete" onclick="confirmarDelecao()">Deletar Conta</button>
+      <form id="formDeletarConta" action="../../Model/delete.php" method="POST">
+          <input type="hidden" name="id" value="<?php echo $id; ?>">
+      </form>
+    </div>
+      
+
+      <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" alt="Foto de Perfil" class="profile-picture">
+  </div>
+    
 
 
 
@@ -131,6 +133,6 @@ if ($registro) {
 
 <?php
 } else {
-    echo "<p>Usuário não encontrado.</p>";
+  header("Location: logintela.php");
 }
 ?>

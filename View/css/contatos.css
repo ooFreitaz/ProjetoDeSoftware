@@ -73,6 +73,7 @@ input[type="submit"]:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Quicksand', sans-serif;
        
 }
 

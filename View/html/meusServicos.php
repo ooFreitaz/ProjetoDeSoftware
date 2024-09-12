@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 } else {
-    echo "<p>Usuário não está logado.</p>";
+    header("Location: logintela.php");
     exit();
 }
 
@@ -38,7 +38,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" type="text/css" href="../css/meusServicos.css">
+    <link rel="stylesheet" type="text/css" href="../css/meusServico.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -86,13 +86,14 @@ if ($registro) {
 
 
  <div class="container">
-    <h2>Meus Serviços</h2>
-    <?php if (!empty($servicos)) { ?>
+    <div class="myServicesContent">
+      <h2>Meus Serviços</h2>
+      <?php if (!empty($servicos)) { ?>
         <div class="row">
             <?php foreach ($servicos as $servico) { ?>
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" alt="Imagem do Serviço">
+                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" alt="Imagem do Serviço" width="60%">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
                             <p class="card-text"><?php echo htmlspecialchars($servico['descricao']); ?></p>
@@ -100,14 +101,17 @@ if ($registro) {
                             <p class="card-text"><strong>Valor:</strong> R$<?php echo htmlspecialchars($servico['valor']); ?></p>
                             <p class="card-text"><strong>Prazo de Entrega:</strong> <?php echo htmlspecialchars($servico['prazoEntrega']); ?></p>
                             <a href="detalhesServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Ver Detalhes</a>
+                            <a href="editarServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Editar</a>
+                            <a href="../../Model/deleteServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Excluir</a>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
-    <?php } else { ?>
+      <?php } else { ?>
         <p>Você ainda não possui serviços cadastrados.</p>
-    <?php } ?>
+      <?php } ?>
+    </div>
 </div>
 
 
@@ -126,6 +130,6 @@ if ($registro) {
 
 <?php
 } else {
-    echo "<p>Usuário não encontrado.</p>";
+  header("Location: logintela.php");
 }
 ?>

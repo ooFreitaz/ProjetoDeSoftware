@@ -3,7 +3,7 @@
 if(isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 } else {
-    header("Location: ../../index.php");
+    header("Location: logintela.php");
     exit();
 }
 

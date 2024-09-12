@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
+body{width: 100%;
+    margin: 0;
+    background-color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.rounded-circle{
+    object-fit: cover;
+}
+
+
+.input{padding: 6px 12px 6px 12px;
+    height: 35px;
+    border-radius: 30px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-size: 18px;
+    color: #495057;
+    width: 100%;
+    transition: .3s;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+}
+    .input:focus
+    {
+        border:1px solid #0000ff;
+    }
+
+.label{font-size: 18px;
+    font-family: 'Quicksand', sans-serif;}
+
+.button{cursor: pointer;
+    padding: 0;
+    height: 50px;
+    width: 100%;
+    border-radius: 30px;
+    color: #ffffff;
+    background-color: #0000ff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    }
+
+.button:hover{
+    transition: all .3s ;
+    background-color: rgb(7, 52, 80);
+    cursor: pointer;
+}
+
+
+.RegisterServiceDiv
+{
+    font-family: 'Quicksand', sans-serif;
+    width: 40%;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+
+    margin: 0 auto;
+}
+
+#RegisterServiceForm
+{
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(238, 237, 237);
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+
+}
+
+.groupContent
+{
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.groupContent > textarea
+{
+    padding: 12px;
+    height: 13vh;
+    border-radius: 30px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-size: 18px;
+    color: #495057;
+    width: 100%;
+    transition: .3s;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.groupContent > textarea:focus
+{
+    border:1px solid #0000ff;
+}
+
+#SubmitButton
+{
+    width: 45%;
+    margin: auto ;
+}
+
+.InputSelect
+{
+    padding: 6px 12px 6px 12px;
+    height: 38px;
+    border-radius: 30px;
+    border: 1px solid #d7d8da;
+    background-color: #fff;
+    font-size: 18px;
+    color: #495057;
+    width: 100%;
+    transition: .3s;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+}

@@ -3,7 +3,7 @@
 if(isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 } else {
-    echo "<p>Usuário não está logado.</p>";
+    header("Location: logintela.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Contato</title>
-    <link rel="stylesheet" href="../css/contato.css">
+    <link rel="stylesheet" href="../css/contatos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -56,7 +56,7 @@ if ($registro) {
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
             <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
-            <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
+            <li><a class="dropdown-item" href="meusServicos.php">Meus Serviços</a></li>
             <li><a class="dropdown-item" href="#">Favoritos</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
@@ -115,6 +115,6 @@ if ($registro) {
 
 <?php
 } else {
-    echo "<p>Usuário não encontrado.</p>";
+  header("Location: logintela.php");
 }
 ?>
