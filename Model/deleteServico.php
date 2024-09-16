@@ -30,11 +30,19 @@ if (isset($_GET['id'])) {
         $stmt->execute();
 
         // Redireciona após a exclusão
-        header("Location: ../View/html/meusServicos.php?msg=ServicoExcluido");
+        echo "
+        <script type=\"text/javascript\">
+            alert(\"Serviço excluído.\");
+        </script>";
+        header("refresh: 1; url=../View/html/meusServicos.php");
         exit();
     } else {
         // Se o serviço não pertence ao usuário
-        header("Location: meusServicos.php?msg=ServicoNaoEncontrado");
+        echo "
+        <script type=\"text/javascript\">
+            alert(\"Servico não encontrado.\");
+        </script>";
+        header("refresh: 1; url=../View/html/meusServicos.php");
         exit();
     }
 } else {

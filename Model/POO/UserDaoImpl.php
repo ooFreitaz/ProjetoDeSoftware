@@ -8,7 +8,7 @@ class UserDaoImpl implements UserDao {
     private $conn;
 
     public function __construct() {
-        $this->conn = Connection::getConnection();
+        $this->conn = (new Connection())->getConnection();
     }
 
     public function getAllUsers() {

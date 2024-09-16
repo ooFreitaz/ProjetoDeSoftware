@@ -1,5 +1,3 @@
-CREATE DATABASE BD_PROJETOSOFTWARE;
-
 USE BD_PROJETOSOFTWARE;
 
 DROP TABLE IF EXISTS `usuario`;
@@ -21,10 +19,9 @@ CREATE TABLE IF NOT EXISTS `servico` (
   `categoria` VARCHAR(50) NOT NULL,
   `descricao` VARCHAR(255) NOT NULL,
   `prazoEntrega` VARCHAR(20) NOT NULL,
-  `imagens` VARCHAR(50) NOT NULL,
-  `linksYoutube` VARCHAR(50) NOT NULL
-  PRIMARY KEY (`id`)
+  `imagens` VARCHAR(50),
+  `linksYoutube` VARCHAR(255),
+  PRIMARY KEY (`id`),
+  dono_servico int,
+  foreign key (dono_servico) references usuario(id) on delete cascade
 ) ENGINE=InnoDB;
-
-
-
