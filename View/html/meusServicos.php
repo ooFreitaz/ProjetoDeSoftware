@@ -93,7 +93,7 @@ if ($registro) {
             <?php foreach ($servicos as $servico) { ?>
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" alt="Imagem do Serviço" width="60%">
+                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" onerror="Sem" width="60%">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
                             <p class="card-text"><?php echo htmlspecialchars($servico['descricao']); ?></p>

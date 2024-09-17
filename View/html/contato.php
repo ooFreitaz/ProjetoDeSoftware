@@ -51,7 +51,7 @@ if ($registro) {
 
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
