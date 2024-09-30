@@ -12,7 +12,7 @@ if (isset($_SESSION['id']) && isset($_GET['id'])) {
 require('../../Controller/conexao.php');
 
 function buscarServico($conexao, $idServico, $idUsuario) {
-    $sql = "SELECT * FROM servico WHERE id=:idServico AND dono_servico=:idUsuario";
+    $sql = "SELECT * FROM servico WHERE id=:idServico AND idDono=:idUsuario";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':idServico', $idServico, PDO::PARAM_INT);
     $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);

@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    width: 100%;
+    height: 100vh; /* Preenche toda a altura da tela */
+    margin: 0;
+    background-color: #f8f9fa;
+    font-family: 'Quicksand', sans-serif;
+    display: flex; /* Usar flexbox para centralizar o formulário */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+form {
+    width: 90%; /* Responsivo */
+    max-width: 500px; /* Limite máximo para o tamanho */
+    height: auto; /* Altura automática */
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 30px;
+    padding-bottom: 40px; /* Adiciona espaçamento abaixo do formulário */
+    border: 1px solid lightgray;
+    display: flex; /* Usar flexbox para o conteúdo interno */
+    flex-direction: column; /* Organiza o conteúdo em coluna */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+}
+
+form > div > h1 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.input {
+    padding: 6px 12px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-size: 18px;
+    color: #495057;
+    width: 100%; /* Preenche o espaço disponível */
+    max-width: 220px; /* Limite máximo para a largura */
+    transition: .3s;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.input:focus {
+    border: 1px solid #0000ff;
+}
+
+.label {
+    font-size: 18px;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+button {
+    cursor: pointer;
+    height: 50px;
+    width: 100%; /* Preencher o espaço disponível */
+    max-width: 170px; /* Limite máximo para a largura do botão */
+    border-radius: 30px;
+    color: #ffffff;
+    background-color: #0000ff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-top: 10px; /* Espaço acima do botão */
+    margin-bottom: 20px; /* Espaço abaixo do botão */
+}
+
+button:hover {
+    transition: all .3s;
+    background-color: rgb(7, 52, 80);
+    cursor: pointer;
+}
+
+/* Adicionando media queries para tamanhos menores */
+@media (max-width: 600px) {
+    form {
+        width: 95%; /* Ajuste para telas menores */
+        padding: 20px; /* Mais padding em telas menores */
+    }
+
+    .input {
+        max-width: 90%; /* Maior flexibilidade em telas menores */
+    }
+
+    button {
+        max-width: 90%; /* Maior flexibilidade para o botão */
+    }
+}

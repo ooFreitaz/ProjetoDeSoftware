@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+
+session_start();
 
 if(isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
@@ -17,7 +19,20 @@ function listarRegistro($conexao, $id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function listarServicosDeOutrosUsuarios($conexao, $idUsuario) {
+  $sql = "SELECT servico.*, usuario.nome AS nomeDono
+          FROM servico
+          JOIN usuario ON servico.idDono = usuario.id
+          WHERE servico.idDono != :idUsuario";
+  $stmt = $conexao->prepare($sql);
+  $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 $registro = listarRegistro($conexao, $id);
+$servicos = listarServicosDeOutrosUsuarios($conexao, $id);
 
 if ($registro) {
 
@@ -28,7 +43,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem Vindo!</title>
-    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/navs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
 </head>
@@ -70,6 +85,35 @@ if ($registro) {
     <input type="hidden" name="logout" value="1">
   </form>
 
+
+
+  
+  <div class="container">
+    <h2>Serviços Disponíveis</h2>
+    <?php if (!empty($servicos)) { ?>
+        <div class="row">
+            <?php foreach ($servicos as $servico) { ?>
+              <div class="col-md-3">
+                  <!-- Alterando o link para passar o ID do serviço -->
+                  <a href="detalhesServico.php?id=<?php echo $servico['id']; ?>">
+                      <div class="card mb-4 shadow-sm">
+                          <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top">
+                          <div class="card-body">
+                              <p class="card-text"><?php echo htmlspecialchars($servico['nomeDono']); ?></p>
+                              <h5 class="card-title"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
+                              <p class="card-text"><strong>Valor:</strong> R$<?php echo htmlspecialchars($servico['valor']); ?></p>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+
+
+            <?php } ?>
+        </div>
+    <?php } else { ?>
+        <p>Nenhum serviço encontrado.</p>
+    <?php } ?>
+</div>
   
 
 

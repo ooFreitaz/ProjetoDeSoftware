@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.profile-picture {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #919191;
+}
+
+@media (max-width: 768px)
+{
+    .profile-picture
+    {
+        width: 300px;
+        height: 300px;
+    }
+
+    .custom-btn {
+        width: 100% !important; /* Botões ocupam 100% da largura em telas menores */
+        font-size: 16px; /* Aumenta o tamanho do texto em dispositivos móveis */
+        padding: 12px 0; /* Ajusta o padding para ocupar o espaço corretamente */
+    }
+}
+
+
+.custom-btn {
+    width: 50%; /* Definindo a largura dos botões */
+    height: 50px; /* Definindo a altura dos botões */
+    border-radius: 30px; /* Borda arredondada */
+    background-color: #0000ff; /* Cor de fundo azul */
+    color: #ffffff; /* Cor do texto branco */
+    border: none; /* Sem borda */
+    padding: 15px 30px; /* Ajustando o padding */
+    font-size: 14px; /* Tamanho da fonte */
+    text-transform: uppercase; /* Letras em maiúsculo */
+    letter-spacing: 0.1em; /* Espaçamento entre letras */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: background-color 0.3s ease; /* Transição suave na cor */
+    display: flex; /* Centralizando o conteúdo */
+    justify-content: center; /* Centralizando horizontalmente */
+    align-items: center; /* Centralizando verticalmente */
+    margin: 10px 0; /* Adicionando espaço entre os botões */
+    font-family: 'Quicksand', sans-serif;
+    
+}
+
+.custom-btn:hover {
+    background-color: rgb(7, 52, 80); /* Alteração de cor no hover */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Cor de fundo para o botão de "Deletar Conta" */
+    font-family: 'Quicksand', sans-serif;
+}
+
+.btn-danger:hover {
+    background-color: rgb(139, 0, 0); /* Alteração de cor no hover para o botão de deletar */
+}
+
+
+
+.form-control
+{
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 25px !important;
+}
+
+#cpf:focus {
+    border:1px solid #0000ff !important; 
+    box-shadow: none !important;
+
+}
+
+.form-label
+{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+}
+
+.show-password
+{
+    width: 20px;
+}
+
+#cpf{
+    font-size: 18px;
+}
+
+#mostrarSenha
+{
+    font-family: 'Quicksand', sans-serif;
+}
+
+#senha
+{
+    font-size: 18px;
+}
+
+.rounded-circle{
+    object-fit: cover;
+}

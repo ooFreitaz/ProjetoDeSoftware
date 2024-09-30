@@ -1,126 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-
-body{width: 100%;
+body {
     margin: 0;
-    background-color: #ffffff;
+    background-color: #f8f9fa;
     font-family: 'Quicksand', sans-serif;
 }
 
-.rounded-circle{
+.rounded-circle {
     object-fit: cover;
 }
 
-
-.input{padding: 6px 12px 6px 12px;
-    height: 35px;
-    border-radius: 30px;
-    border: 1px solid #ced4da;
-    background-color: #fff;
-    font-size: 18px;
-    color: #495057;
-    width: 100%;
-    transition: .3s;
-    outline: none;
+/* Ajuste de campo de formulário e seletores */
+.form-control, .form-select {
+    border-radius: 25px !important;
+    padding: 15px;
     font-family: 'Quicksand', sans-serif;
+    transition: .3s;
+    font-size: 17px !important;
 }
-    .input:focus
-    {
-        border:1px solid #0000ff;
-    }
 
-.label{font-size: 18px;
-    font-family: 'Quicksand', sans-serif;}
+.form-control:focus, .form-select:focus {
+    border:1px solid #0000ff !important; 
+    box-shadow: none !important;
+}
 
-.button{cursor: pointer;
-    padding: 0;
-    height: 50px;
-    width: 100%;
-    border-radius: 30px;
-    color: #ffffff;
+/* Botão de criação de serviço */
+.custom-btn {
     background-color: #0000ff;
+    color: white;
     border: none;
+    border-radius: 30px;
     padding: 15px 30px;
-    font-size: 13px;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: .1em;
+    letter-spacing: .07em;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.btn-primary:hover, .custom-btn:hover {
+    background-color: rgb(7, 52, 80);
+}
+
+/* Título centralizado */
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-align: center;
     margin-bottom: 20px;
-    margin-top: 10px;
+}
+
+/* Textarea */
+textarea.form-control {
+    height: 150px;
+}
+
+/* Estilo para o formulário */
+.col-lg-6, .col-md-8 {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .custom-btn {
+        width: 100% !important;
+        font-size: 14px;
+        padding: 12px 0;
     }
 
-.button:hover{
-    transition: all .3s ;
-    background-color: rgb(7, 52, 80);
-    cursor: pointer;
+    .col-lg-6, .col-md-8 {
+        padding: 20px;
+    }
 }
 
+/* Borda e espaçamento para o contêiner */
+.container.my-2 {
+    padding: 30px;
+}
 
-.RegisterServiceDiv
+.form-label
 {
     font-family: 'Quicksand', sans-serif;
-    width: 40%;
-    height: 85vh;
-    display: flex;
-    align-items: center;
-
-    margin: 0 auto;
+    font-size: 17px !important;
 }
-
-#RegisterServiceForm
-{
-    width: 100%;
-    padding: 20px;
-    background-color: rgb(238, 237, 237);
-    border-radius: 10px;
-    border: 1px solid #ced4da;
-
-}
-
-.groupContent
-{
-    margin: 15px 0;
-    display: flex;
-    flex-direction: column;
-  
-}
-
-.groupContent > textarea
-{
-    padding: 12px;
-    height: 13vh;
-    border-radius: 30px;
-    border: 1px solid #ced4da;
-    background-color: #fff;
-    font-size: 18px;
-    color: #495057;
-    width: 100%;
-    transition: .3s;
-    outline: none;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.groupContent > textarea:focus
-{
-    border:1px solid #0000ff;
-}
-
-#SubmitButton
-{
-    width: 45%;
-    margin: auto ;
-}
-
-.InputSelect
-{
-    padding: 6px 12px 6px 12px;
-    height: 38px;
-    border-radius: 30px;
-    border: 1px solid #d7d8da;
-    background-color: #fff;
-    font-size: 18px;
-    color: #495057;
-    width: 100%;
-    transition: .3s;
-    outline: none;
-    font-family: 'Quicksand', sans-serif;
-}
+   

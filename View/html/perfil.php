@@ -29,7 +29,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" type="text/css" href="../css/perfi.css">
+    <link rel="stylesheet" type="text/css" href="../css/perfil.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -42,7 +42,7 @@ if ($registro) {
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="nav.php" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="nav.php" class="nav-link px-2 link-body-emphasis">Home</a></li>
           <li><a href="contato.php" class="nav-link px-2 link-body-emphasis">Contato</a></li>
           <li><a href="sobre.php" class="nav-link px-2 link-body-emphasis">Sobre</a></li>
           <li><a href="faq.php" class="nav-link px-2 link-body-emphasis">FAQ</a></li>
@@ -74,58 +74,57 @@ if ($registro) {
 
 
 
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <form action="../../Model/update.php" method="post" enctype="multipart/form-data" id="dados">
+          <div class="mb-3">
+            <label for="cpf" class="form-label">CPF:</label>
+            <input type="text" class="form-control" name="cpf" id="cpf" minlength="14" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
+          </div>
 
-  <div id="UpdateDataContent">
-    <div id="UpdateDeleteDataContent">
-      <form action="../../Model/update.php" method="post" enctype="multipart/form-data" id="dados">
-            <div id="div-dados">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" name="nome" id="cpf" value="<?php echo $registro['nome']; ?>" required>
+          </div>
 
-                <div class="conjunto-dados">
-                    <label>CPF:</label>
-                    <input class = "input" type="text" name="cpf" id="cpf" minlength="14" maxlength="14" oninput="maskcpf()" value="<?php echo $registro['cpf']; ?>" required>
-                </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" name="email" id="cpf" value="<?php echo $registro['email']; ?>" required>
+          </div>
 
-                <div class="conjunto-dados">
-                    <label>Nome:</label>
-                    <input class = "input" type="text" name="nome" value="<?php echo $registro['nome']; ?>" required>
-                </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha:</label>
+            <input type="password" class="form-control" id="senha" name="senha" id="cpf" value="<?php echo $registro['senha']; ?>" required>
+            <input type="checkbox" id="mostrarSenha" class="show-password">   <span id="mostrarSenha">Mostrar Senha</span>
+          </div>
 
-                <div class="conjunto-dados">
-                    <label>Email: </label>
-                    <input class = "input" type="text" name="email" value="<?php echo $registro['email']; ?>" required>
-                </div>
+          <div class="mb-3">
+            <label for="fotoPerfil" class="form-label">Foto de Perfil:</label>
+            <input type="file" class="form-control" name="fotoPerfil" id="cpf" accept="image/*">
+          </div>
 
-                <div class="conjunto-dados">
-                    <label>Senha:</label>
-                    <input class = "input" type="text" name="senha" value="<?php echo $registro['senha']; ?>" required>
-                </div>
+          <button type="submit" class="custom-btn" onclick="return validateCPF()">Alterar</button>
+        </form>
 
-                 <div class="conjunto-dados">
-                  <label>Foto de Perfil:</label>
-                  <input type="file" name="fotoPerfil" accept="image/*">
-                </div>
-            </div>
-            <button class="botao" type="submit" onclick="return validateCPF()">Alterar</button>
-      </form>
+        <button class="custom-btn btn-danger" onclick="confirmarDelecao()">Deletar Conta</button>
+        <form id="formDeletarConta" action="../../Model/delete.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+        </form>
+      </div>
 
-
-      <button class="botao-delete" onclick="confirmarDelecao()">Deletar Conta</button>
-      <form id="formDeletarConta" action="../../Model/delete.php" method="POST">
-          <input type="hidden" name="id" value="<?php echo $id; ?>">
-      </form>
+      <div class="col-lg-6 col-md-8 mx-auto text-center mt-4">
+        <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" class="profile-picture rounded-circle">
+      </div>
     </div>
-      
-
-      <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" class="profile-picture">
   </div>
-    
 
 
 
 
 
 
-    
+    <script src="../js/mostra_senha.js"></script> 
     <script src="../js/funcoes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

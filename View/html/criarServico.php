@@ -42,7 +42,7 @@ if ($registro) {
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="nav.php" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="nav.php" class="nav-link px-2 link-body-emphasis">Home</a></li>
           <li><a href="contato.php" class="nav-link px-2 link-body-emphasis">Contato</a></li>
           <li><a href="sobre.php" class="nav-link px-2 link-body-emphasis">Sobre</a></li>
           <li><a href="faq.php" class="nav-link px-2 link-body-emphasis">FAQ</a></li>
@@ -76,69 +76,69 @@ if ($registro) {
 
 
   
-  <div class="container">
-    <div class="RegisterServiceDiv">
-      <form action="../../Model/createServico.php" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
-        <h1>Criar seu Serviço</h1>
-        <div class="formContent">
+  <div class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <form action="../../Model/createServico.php" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
+                <h1 class="text-center">Crie seu Serviço</h1>
+                <div class="formContent">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Titulo:</label>
+                        <input type="text" name="titulo" class="form-control" required>
+                    </div>
 
-          <div class="groupContent">
-            <label for="titulo" class="label">Titulo:</label>
-            <input type="text" name="titulo" class="input" required>
-          </div>
+                    <div class="mb-3">
+                        <label for="valor" class="form-label">Valor:</label>
+                        <input type="number" name="valor" class="form-control" required>
+                    </div>
 
-          <div class="groupContent">
-            <label for="valor" class="label">Valor:</label>
-            <input type="number" name="valor" class="input" required>
-          </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria:</label>
+                        <select name="categoria" id="categoria" required class="form-select">
+                            <option value="select">Selecione uma categoria</option>
+                            <option value="animacao">Animação</option>
+                            <option value="vlog">Daily Vlogs</option>
+                            <option value="gameplay">Gameplays</option>
+                            <option value="reel">Reels</option>
+                        </select>
+                    </div>
 
-          <div class="groupContent">
-            <label for="categoria" class="label">Categoria:</label>
-            <select name="categoria" id="categoria" required class="InputSelect">
-              <option value="select">Selecione uma categoria</option>
-              <option value="animacao">Animação</option>
-              <option value="vlog">Daily Vlogs</option>
-              <option value="gameplay">Gameplays</option>
-              <option value="reel">Reels</option>
-            </select>
-          </div>
+                    <div class="mb-3">
+                        <label for="prazo" class="form-label">Prazo de Entrega:</label>
+                        <select name="prazoEntrega" id="prazo" required class="form-select">
+                            <option value="1 dia">1 dia</option>
+                            <option value="2 dias">2 dias</option>
+                            <option value="3 dias">3 dias</option>
+                            <option value="4 dias">4 dias</option>
+                            <option value="5 dias">5 dias</option>
+                            <option value="10 dias">10 dias</option>
+                            <option value="20 dias">20 dias</option>
+                        </select>
+                    </div>
 
-          <div class="groupContent">
-            <label for="prazo" class="label">Prazo de Entrega:</label>
-            <select name="prazoEntrega" id="prazo" required class="InputSelect">
-              <option value="1 dia">1 dia</option>
-              <option value="2 dias">2 dias</option>
-              <option value="3 dias">3 dias</option>
-              <option value="4 dias">4 dias</option>
-              <option value="5 dias">5 dias</option>
-              <option value="10 dias">10 dias</option>
-              <option value="20 dias">20 dias</option>
-            </select>
-          </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição:</label>
+                        <textarea name="descricao" class="form-control" required maxlength="600" placeholder="Máximo de 600 caracteres..."></textarea>
+                    </div>
 
-          <div class="groupContent">
-            <label for="descricao" class="label">Descrição:</label>
-            <textarea name="descricao" required></textarea>
-          </div>
+                    <div class="mb-3">
+                        <label for="imagem" class="form-label">Imagem:</label>
+                        <input type="file" name="imagemServico" accept="image/*" class="form-control" required>
+                    </div>
 
-          <div class="groupContent">
-           <label for="imagem" class="label">Imagem:</label>
-           <input type="file" name="imagemServico" accept="image/*">
-          </div>
+                    <div class="mb-3">
+                        <label for="link" class="form-label">Link do Youtube:</label>
+                        <input type="text" name="link" class="form-control">
+                    </div>
 
-          <div class="groupContent">
-            <label for="link" class="label">Link do Youtube:</label>
-            <input type="text" name="link" class="input">
-          </div>
-          <div id="SubmitButton">
-            <button type="submit" class="button">Criar Serviço</button>
-          </div>
+                    <div class="d-grid">
+                        <button type="submit" class="custom-btn">Criar Serviço</button>
+                    </div>
+                </div>
+            </form>
         </div>
-      </form>
-
     </div>
-  </div>
-
+</div>
 
 
 

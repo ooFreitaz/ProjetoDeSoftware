@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
     $idServico = $_GET['id'];
 
     // Verifica se o serviço pertence ao usuário logado
-    $sql = "SELECT * FROM servico WHERE id = :idServico AND dono_servico = :idUsuario";
+    $sql = "SELECT * FROM servico WHERE id = :idServico AND idDono = :idUsuario";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':idServico', $idServico, PDO::PARAM_INT);
     $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);

@@ -1,14 +1,14 @@
 <?php
 class Service {
-    private $id;
-    private $titulo;
-    private $valor;
-    private $categoria;
-    private $descricao;
-    private $prazoEntrega;
-    private $imagens;
-    private $linksYoutube;
-    private $dono_servico;
+    protected $id;
+    protected $titulo;
+    protected $valor;
+    protected $categoria;
+    protected $descricao;
+    protected $prazoEntrega;
+    protected $imagens;
+    protected $linksYoutube;
+    protected $idDono;
 
     // Getters
     public function getId() {
@@ -44,8 +44,9 @@ class Service {
     }
 
     public function getDonoServico() {
-        return $this->dono_servico;
+        return $this->idDono;
     }
+
 
     // Setters
     public function setId($id) {
@@ -80,8 +81,8 @@ class Service {
         $this->linksYoutube = $linksYoutube;
     }
 
-    public function setDonoServico($dono_servico) {
-        $this->dono_servico = $dono_servico;
+    public function setDonoServico($idDono) {
+        $this->idDono = $idDono;
     }
 }
 ?>

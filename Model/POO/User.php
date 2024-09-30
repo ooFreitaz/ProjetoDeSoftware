@@ -1,11 +1,11 @@
 <?php
 class User {
-    private $id;
-    private $nome;
-    private $cpf;
-    private $email;
-    private $senha;
-    private $fotoPerfil;
+    protected $id;
+    protected $nome;
+    protected $cpf;
+    protected $email;
+    protected $senha;
+    protected $fotoPerfil;
 
     // Getters
     public function getId() {

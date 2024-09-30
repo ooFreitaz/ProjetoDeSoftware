@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/cadastros.css">
 </head>
 <body>
-
-    <?php require ("../../Controller/conexao.php"); ?>
-   
-    <form action="../../Model/insert.php" method="post" id="cadastroForm">
+    <form action="../../Controller/POO/UserController.php?action=create_user" method="post" id="cadastroForm">
         <div><h1>Cadastre-se</h1></div>
         <div id="form">
             <label for="nome" class="label">Nome</label>
@@ -28,8 +25,6 @@
         </div>
         <div>Já tem cadastro? <a href="logintela.php">Faça login</a></div>
     </form>
-    
-
 
     <script src="../js/funcoes.js"></script>
     <script src="../js/valida_senha.js"></script>

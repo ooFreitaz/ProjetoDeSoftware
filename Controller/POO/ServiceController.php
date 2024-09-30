@@ -1,7 +1,7 @@
 <?php
 
-require_once '../Model/Service.php';
-require_once '../Model/ServiceDaoImpl.php';
+require_once '../../Model/POO/Service.php';
+require_once '../../Model/POO/ServiceDaoImpl.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $serviceDao = new ServiceDaoImpl();

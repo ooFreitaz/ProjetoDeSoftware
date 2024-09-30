@@ -1,7 +1,7 @@
 <?php
 
-require_once '../Model/User.php';
-require_once '../Model/UserDaoImpl.php';
+require_once '../../Model/POO/User.php';
+require_once '../../Model/POO/UserDaoImpl.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $userDao = new UserDaoImpl();
@@ -10,16 +10,32 @@ $user = new User();
 switch ($action) {
     case 'create_user':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user->setNome($_POST['nome']);
-            $user->setCpf($_POST['cpf']);
-            $user->setEmail($_POST['email']);
-            $user->setSenha($_POST['senha']);
-            $user->setFotoPerfil($_POST['fotoPerfil']);
+            $email = $_POST['email'];
         
-            if ($userDao->createUser($user)) {
-                echo 'Usuário criado com sucesso!<br>Volte à página de login: <a href="../View/login.php">Retornar</a>';
+            // Verifica se o e-mail já existe
+            if ($userDao->emailExists($email)) {
+                echo '<script type="text/javascript">
+                        alert("E-mail já cadastrado. Tente outro.");
+                        window.location.href="../../View/html/cadastro.php";
+                      </script>';
             } else {
-                echo 'Erro ao criar o usuário.';
+                $user->setNome($_POST['nome']);
+                $user->setCpf($_POST['cpf']);
+                $user->setEmail($email);
+                $user->setSenha($_POST['senha']);
+                $user->setFotoPerfil(null); 
+            
+                if ($userDao->createUser($user)) {
+                    // Inicia a sessão e salva o ID do usuário
+                    session_start();
+                    $_SESSION['id'] = $userDao->getUser($user->getId())->getId();
+                    
+                    // Redireciona para a página nav.php
+                    header('Location: ../../View/html/nav.php');
+                    exit();
+                } else {
+                    echo 'Erro ao criar o usuário.';
+                }
             }
         }
         break;

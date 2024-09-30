@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.card {
+    min-height: 300px; /* Altura mínima para todos os cards serem do mesmo tamanho */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.card-title, .card-text {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none !important; /* Remove sublinhado dos links */
+    color: inherit !important; /* Mantém a cor original do texto */
+}
+
+.card img {
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+    height: 200px; /* Define uma altura consistente para as imagens */
+    width: 100%; /* Imagens ocupam toda a largura do card */
+}
+
+
+.rounded-circle{
+    object-fit: cover;
+}

@@ -19,7 +19,7 @@ function listarRegistro($conexao, $id) {
 }
 
 function listarServicos($conexao, $idUsuario) {
-    $sql = "SELECT * FROM servico WHERE dono_servico=:idUsuario";
+    $sql = "SELECT * FROM servico WHERE idDono=:idUsuario";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
     $stmt->execute();
@@ -38,7 +38,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" type="text/css" href="../css/meusServico.css">
+    <link rel="stylesheet" type="text/css" href="../css/meusServicos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -51,7 +51,7 @@ if ($registro) {
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="nav.php" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="nav.php" class="nav-link px-2 link-body-emphasis">Home</a></li>
           <li><a href="contato.php" class="nav-link px-2 link-body-emphasis">Contato</a></li>
           <li><a href="sobre.php" class="nav-link px-2 link-body-emphasis">Sobre</a></li>
           <li><a href="faq.php" class="nav-link px-2 link-body-emphasis">FAQ</a></li>
@@ -100,9 +100,12 @@ if ($registro) {
                             <p class="card-text"><strong>Categoria:</strong> <?php echo htmlspecialchars($servico['categoria']); ?></p>
                             <p class="card-text"><strong>Valor:</strong> R$<?php echo htmlspecialchars($servico['valor']); ?></p>
                             <p class="card-text"><strong>Prazo de Entrega:</strong> <?php echo htmlspecialchars($servico['prazoEntrega']); ?></p>
-                            <a href="detalhesServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Ver Detalhes</a>
-                            <a href="editarServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Editar</a>
-                            <a href="../../Model/deleteServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Excluir</a>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="detalhesServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Ver Detalhes</a>
+                                <a href="editarServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Editar</a>
+                                <a href="../../Model/deleteServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-danger">Excluir</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>

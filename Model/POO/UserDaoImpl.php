@@ -35,16 +35,27 @@ class UserDaoImpl implements UserDao {
     public function createUser($user) {
         try {
             $statement = $this->conn->prepare("INSERT INTO usuario (nome, cpf, email, senha, fotoPerfil) VALUES (:nome, :cpf, :email, :senha, :fotoPerfil)");
-            $statement->bindParam(':nome', $user->getNome());
-            $statement->bindParam(':cpf', $user->getCpf());
-            $statement->bindParam(':email', $user->getEmail());
-            $statement->bindParam(':senha', $user->getSenha());
-            $statement->bindParam(':fotoPerfil', $user->getFotoPerfil());
+    
+            // Criando variáveis para armazenar os valores
+            $nome = $user->getNome();
+            $cpf = $user->getCpf();
+            $email = $user->getEmail();
+            $senha = $user->getSenha();
+            $fotoPerfil = $user->getFotoPerfil(); // Isso será NULL no momento da inserção
+    
+            // Usando as variáveis para o bindParam
+            $statement->bindParam(':nome', $nome);
+            $statement->bindParam(':cpf', $cpf);
+            $statement->bindParam(':email', $email);
+            $statement->bindParam(':senha', $senha);
+            $statement->bindParam(':fotoPerfil', $fotoPerfil); // NULL para a foto de perfil
+    
             return $statement->execute();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
+    
 
     public function updateUser($user) {
         try {
@@ -88,6 +99,21 @@ class UserDaoImpl implements UserDao {
         session_unset();
         session_destroy();
     }
+
+    public function emailExists($email) {
+        try {
+            $statement = $this->conn->prepare("SELECT COUNT(*) FROM usuario WHERE email = :email");
+            $statement->bindParam(':email', $email);
+            $statement->execute();
+            
+            // Retorna true se o e-mail já existe, false caso contrário
+            return $statement->fetchColumn() > 0;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    
 }
 
 ?>
