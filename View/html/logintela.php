@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <form action="../../Model/login.php" method="post">
+    <form action="../../Controller/POO/UserController.php?action=login" method="post">
         <div><h1>Faça Login</h1></div>
         <div id="form">
             <label for="email" class="label">Email</label>

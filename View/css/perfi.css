@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
-    background-color: #f8f9fa;
+
 }
 
 .profile-picture {
@@ -28,6 +28,8 @@ body {
         font-size: 16px; /* Aumenta o tamanho do texto em dispositivos móveis */
         padding: 12px 0; /* Ajusta o padding para ocupar o espaço corretamente */
     }
+
+    .diff{margin-top: 3rem !important;}
 }
 
 
@@ -107,3 +109,5 @@ body {
 .rounded-circle{
     object-fit: cover;
 }
+
+.diff{margin-top: 6rem;}

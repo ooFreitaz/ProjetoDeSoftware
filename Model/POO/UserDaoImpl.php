@@ -36,41 +36,59 @@ class UserDaoImpl implements UserDao {
         try {
             $statement = $this->conn->prepare("INSERT INTO usuario (nome, cpf, email, senha, fotoPerfil) VALUES (:nome, :cpf, :email, :senha, :fotoPerfil)");
     
-            // Criando variáveis para armazenar os valores
             $nome = $user->getNome();
             $cpf = $user->getCpf();
             $email = $user->getEmail();
             $senha = $user->getSenha();
             $fotoPerfil = $user->getFotoPerfil(); // Isso será NULL no momento da inserção
     
-            // Usando as variáveis para o bindParam
             $statement->bindParam(':nome', $nome);
             $statement->bindParam(':cpf', $cpf);
             $statement->bindParam(':email', $email);
             $statement->bindParam(':senha', $senha);
-            $statement->bindParam(':fotoPerfil', $fotoPerfil); // NULL para a foto de perfil
+            $statement->bindParam(':fotoPerfil', $fotoPerfil);
     
-            return $statement->execute();
+            $statement->execute();
+    
+            // Retorna o ID do usuário recém-criado
+            return $this->conn->lastInsertId();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
-    
+        
 
     public function updateUser($user) {
         try {
-            $statement = $this->conn->prepare("UPDATE usuario SET nome = :nome, cpf = :cpf, email = :email, senha = :senha, fotoPerfil = :fotoPerfil WHERE id = :id");
-            $statement->bindParam(':id', $user->getId());
-            $statement->bindParam(':nome', $user->getNome());
-            $statement->bindParam(':cpf', $user->getCpf());
-            $statement->bindParam(':email', $user->getEmail());
-            $statement->bindParam(':senha', $user->getSenha());
-            $statement->bindParam(':fotoPerfil', $user->getFotoPerfil());
+            // Preparar a query dependendo se a foto de perfil foi enviada ou não
+            if ($user->getFotoPerfil()) {
+                $sql = "UPDATE usuario SET nome = :nome, cpf = :cpf, email = :email, senha = :senha, fotoPerfil = :fotoPerfil WHERE id = :id";
+            } else {
+                $sql = "UPDATE usuario SET nome = :nome, cpf = :cpf, email = :email, senha = :senha WHERE id = :id";
+            }
+    
+            $statement = $this->conn->prepare($sql);
+    
+            // Atribuir valores aos parâmetros
+            $statement->bindValue(':nome', $user->getNome());
+            $statement->bindValue(':cpf', $user->getCpf());
+            $statement->bindValue(':email', $user->getEmail());
+            $statement->bindValue(':senha', $user->getSenha());
+            $statement->bindValue(':id', $user->getId(), PDO::PARAM_INT);
+    
+            // Se a foto de perfil estiver presente, atribuí-la ao parâmetro
+            if ($user->getFotoPerfil()) {
+                $statement->bindValue(':fotoPerfil', $user->getFotoPerfil());
+            }
+    
             return $statement->execute();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
+            return false;
         }
     }
+    
+    
 
     public function deleteUser($id) {
         try {

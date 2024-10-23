@@ -79,7 +79,7 @@ if ($servico) {
   </header>
 
 
-  <form id="logout-form" action="../../Model/logout.php" method="POST" style="display: none;">
+  <form id="logout-form" action="../../Controller/POO/UserController.php?action=logout" method="POST" style="display: none;">
     <input type="hidden" name="logout" value="1">
   </form>
 

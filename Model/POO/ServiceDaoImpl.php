@@ -11,16 +11,6 @@ class ServiceDaoImpl implements ServiceDao {
         $this->conn = (new Connection())->getConnection();
     }
 
-    public function getAllServices() {
-        try {
-            $statement = $this->conn->prepare("SELECT * FROM servico");
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_CLASS, 'Service');
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
-
     public function getService($id) {
         try {
             $statement = $this->conn->prepare("SELECT * FROM servico WHERE id = :id");
@@ -72,6 +62,20 @@ class ServiceDaoImpl implements ServiceDao {
             $statement = $this->conn->prepare("DELETE FROM servico WHERE id = :id");
             $statement->bindParam(':id', $id);
             return $statement->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function listServicesFromOtherUsers($idUsuario) {
+        try {
+            $statement = $this->conn->prepare("SELECT servico.*, usuario.nome AS nomeDono
+                                               FROM servico
+                                               JOIN usuario ON servico.idDono = usuario.id
+                                               WHERE servico.idDono != :idUsuario");
+            $statement->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

@@ -1,24 +1,20 @@
-<?php
+<?php 
+
 session_start();
 
-if(isset($_SESSION['id'])) {
-    $id = $_SESSION['id'];
+if (isset($_SESSION['id'])) {
+    $userId = $_SESSION['id'];
 } else {
     header("Location: logintela.php");
     exit();
 }
 
-require ('../../Controller/conexao.php');
+require_once '../../Model/POO/UserDaoImpl.php';
 
-function listarRegistro($conexao, $id) {
-    $sql = "SELECT * FROM usuario WHERE id=:id";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-$registro = listarRegistro($conexao, $id);
+// Criar uma instância de UserDaoImpl para utilizar seus métodos
+$userDao = new UserDaoImpl();
+// Utilizar o método getUser para obter as informações do usuário
+$registro = $userDao->getUser($userId);
 
 if ($registro) {
 ?>
@@ -51,7 +47,7 @@ if ($registro) {
 
         <div class="dropdown text-end">
           <a href="nav.php" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
+            <img src="../../uploads/<?php echo $registro->getFotoPerfil(); ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
@@ -67,7 +63,7 @@ if ($registro) {
   </header>
 
 
-  <form id="logout-form" action="../../Model/logout.php" method="POST" style="display: none;">
+  <form id="logout-form" action="../../Controller/POO/UserController.php?action=logout" method="POST" style="display: none;">
     <input type="hidden" name="logout" value="1">
   </form>
 
