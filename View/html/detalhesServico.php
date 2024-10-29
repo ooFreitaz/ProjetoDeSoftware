@@ -88,7 +88,7 @@ if ($detalhesServico) {
     </div>
 </header>
 
-<form id="logout-form" action="../../Controller/POO/UserController.php?action=logout" method="POST" style="display: none;">
+<form id="logout-form" action="../../Controller/UserController.php?action=logout" method="POST" style="display: none;">
     <input type="hidden" name="logout" value="1">
 </form>
 

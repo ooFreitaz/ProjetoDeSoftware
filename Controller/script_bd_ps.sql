@@ -16,9 +16,9 @@ CREATE TABLE usuario (
 CREATE TABLE servico (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- futuramente mudar para idServico
   titulo varchar(100) NOT NULL,
-  valor VARCHAR(50) NOT NULL,
+  valor DECIMAL(10,2) NOT NULL,
   categoria VARCHAR(50) NOT NULL,
-  descricao VARCHAR(600) NOT NULL,
+  descricao TEXT NOT NULL,
   prazoEntrega VARCHAR(20) NOT NULL,
   imagens VARCHAR(200),
   linksYoutube VARCHAR(255),

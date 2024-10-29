@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/cadastros.css">
 </head>
 <body>
-    <form action="../../Controller/POO/UserController.php?action=create_user" method="post" id="cadastroForm">
+    <form action="../../Controller/UserController.php?action=create_user" method="post" id="cadastroForm">
         <div><h1>Cadastre-se</h1></div>
         <div id="form">
             <label for="nome" class="label">Nome</label>

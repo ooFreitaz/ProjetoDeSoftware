@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
     exit();
 }
 
-require_once '../../Model/POO/UserDaoImpl.php';
+require_once '../../Model/UserDaoImpl.php';
 
 // Criar uma instância de UserDaoImpl para utilizar seus métodos
 $userDao = new UserDaoImpl();
@@ -63,7 +63,7 @@ if ($registro) {
     </div>
   </header>
 
-  <form id="logout-form" action="../../Controller/POO/UserController.php?action=logout" method="POST" style="display: none;">
+  <form id="logout-form" action="../../Controller/UserController.php?action=logout" method="POST" style="display: none;">
     <input type="hidden" name="logout" value="1">
   </form>
 
@@ -74,7 +74,7 @@ if ($registro) {
   <div class="container diff">
     <div class="row">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <form action="../../Controller/POO/UserController.php?action=update_user" method="post" enctype="multipart/form-data" id="dados">
+        <form action="../../Controller/UserController.php?action=update_user" method="post" enctype="multipart/form-data" id="dados">
           <div class="mb-3">
             <label for="cpf" class="form-label">CPF:</label>
             <input type="text" class="form-control" name="cpf" id="cpf" minlength="14" maxlength="14" oninput="maskcpf()" value="<?php echo $registro->getCpf(); ?>" required>
@@ -105,7 +105,7 @@ if ($registro) {
         </form>
 
         <button class="custom-btn btn-danger" onclick="confirmarDelecao()">Deletar Conta</button>
-        <form id="formDeletarConta" action="../../Controller/POO/UserController.php?action=delete_user" method="POST">
+        <form id="formDeletarConta" action="../../Controller/UserController.php?action=delete_user" method="POST">
             <input type="hidden" name="id" value="<?php echo $registro->getId(); ?>">
         </form>
       </div>

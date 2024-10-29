@@ -76,14 +76,12 @@ if ($registro) {
   </header>
 
 
-  <form id="logout-form" action="../../Controller/POO/UserController.php?action=logout" method="POST" style="display: none;">
+  <form id="logout-form" action="../../Controller/UserController.php?action=logout" method="POST" style="display: none;">
     <input type="hidden" name="logout" value="1">
   </form>
 
 
-
-
-
+  
 
  <div class="container">
     <div class="myServicesContent">
@@ -93,7 +91,7 @@ if ($registro) {
             <?php foreach ($servicos as $servico) { ?>
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" onerror="Sem" width="60%">
+                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" onerror="Sem Imagem" width="60%">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
                             <p class="card-text"><?php echo htmlspecialchars($servico['descricao']); ?></p>

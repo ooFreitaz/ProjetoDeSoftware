@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../Model/POO/User.php';
-require_once '../../Model/POO/UserDaoImpl.php';
+require_once '../Model/User.php';
+require_once '../Model/UserDaoImpl.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $userDao = new UserDaoImpl();
@@ -16,7 +16,7 @@ switch ($action) {
             if ($userDao->emailExists($email)) {
                 echo '<script type="text/javascript">
                         alert("E-mail já cadastrado. Tente outro.");
-                        window.location.href="../../View/html/cadastro.php";
+                        window.location.href="../View/html/cadastro.php";
                       </script>';
             } else {
                 $user->setNome($_POST['nome']);
@@ -34,12 +34,12 @@ switch ($action) {
                     $_SESSION['id'] = $newUserId;
                     
                     // Redireciona para a página nav.php
-                    header('Location: ../../View/html/nav.php');
+                    header('Location: ../View/html/nav.php');
                     exit();
                 } else {
                     echo '<script type="text/javascript">
                         alert("Erro ao criar usuário.");
-                        window.location.href="../../View/html/cadastro.php";
+                        window.location.href="../View/html/cadastro.php";
                       </script>';
                 }
             }
@@ -57,13 +57,13 @@ switch ($action) {
                 $_SESSION['id'] = $user->getId();
                 echo '<script type="text/javascript">
                         alert("Seja bem vindo.");
-                        window.location.href="../../View/html/nav.php";
+                        window.location.href="../View/html/nav.php";
                      </script>';
                 exit();
             } else {
                 echo '<script type="text/javascript">
                         alert("Email ou senha incorretos.");
-                        window.location.href="../../View/html/logintela.php";
+                        window.location.href="../View/html/logintela.php";
                       </script>';
             }
         }
@@ -83,7 +83,7 @@ switch ($action) {
     
                 // Processar a imagem de perfil se enviada
                 if (isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] === UPLOAD_ERR_OK) {
-                    $diretorio_upload = '../../uploads/';
+                    $diretorio_upload = '../uploads/';
                     $nome_arquivo = basename($_FILES['fotoPerfil']['name']);
                     $caminho_arquivo = $diretorio_upload . $nome_arquivo;
     
@@ -96,12 +96,12 @@ switch ($action) {
                 if ($userDao->updateUser($user)) {
                     echo '<script type="text/javascript">
                             alert("Informações alteradas com sucesso!");
-                            window.location.href = "../../View/html/perfil.php";
+                            window.location.href = "../View/html/perfil.php";
                           </script>';
                 } else {
                     echo '<script type="text/javascript">
                             alert("Erro ao alterar informações.");
-                            window.location.href = "../../View/html/perfil.php";
+                            window.location.href = "../View/html/perfil.php";
                           </script>';
                 }
             }
@@ -137,8 +137,8 @@ switch ($action) {
 
     default:
         echo '<script type="text/javascript">
-                        alert("Ação inválida.");
-                      </script>';
+                alert("Ação inválida.");
+              </script>';
         break;
 }
 

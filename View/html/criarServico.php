@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
     exit();
 }
 
-require_once '../../Model/POO/UserDaoImpl.php';
+require_once '../../Model/UserDaoImpl.php';
 
 // Criar uma instância de UserDaoImpl para utilizar seus métodos
 $userDao = new UserDaoImpl();
@@ -63,7 +63,7 @@ if ($registro) {
   </header>
 
 
-  <form id="logout-form" action="../../Controller/POO/UserController.php?action=logout" method="POST" style="display: none;">
+  <form id="logout-form" action="../../Controller/UserController.php?action=logout" method="POST" style="display: none;">
     <input type="hidden" name="logout" value="1">
   </form>
 
@@ -75,7 +75,7 @@ if ($registro) {
   <div class="container my-2">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
-            <form action="../../Model/createServico.php" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
+            <form action="../../Controller/ServiceController.php?action=create_service" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
                 <h1 class="text-center">Crie seu Serviço</h1>
                 <div class="formContent">
                     <div class="mb-3">
