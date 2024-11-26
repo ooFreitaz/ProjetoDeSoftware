@@ -7,5 +7,6 @@ interface ServiceDao {
     public function updateService($service);
     public function deleteService($id);
     public function listServicesFromOtherUsers($idUsuario);
+    public function getServiceByUser($idUsuario, $idServico);
 }
 ?>

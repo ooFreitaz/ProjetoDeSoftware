@@ -20,12 +20,12 @@ switch ($action) {
             $service->setDonoServico($_SESSION['id']);
 
             // Tratamento da imagem
-            if (isset($_FILES['imagemServico']) && $_FILES['imagemServico']['error'] === UPLOAD_ERR_OK) {
+            if (isset($_FILES['imagens']) && $_FILES['imagens']['error'] === UPLOAD_ERR_OK) {
                 $diretorio_upload = '../uploads/';
-                $nome_arquivo = basename($_FILES['imagemServico']['name']);
+                $nome_arquivo = basename($_FILES['imagens']['name']);
                 $caminho_arquivo = $diretorio_upload . $nome_arquivo;
                 
-                if (move_uploaded_file($_FILES['imagemServico']['tmp_name'], $caminho_arquivo)) {
+                if (move_uploaded_file($_FILES['imagens']['tmp_name'], $caminho_arquivo)) {
                     $service->setImagens($nome_arquivo);
                 }
             }
@@ -47,7 +47,7 @@ switch ($action) {
     case 'update_service':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
-            $serviceId = $_POST['id'];
+            $serviceId = $_POST['idServico'];
             $existingService = $serviceDao->getService($serviceId);
 
             if ($existingService && $existingService->getDonoServico() == $_SESSION['id']) {
@@ -57,20 +57,18 @@ switch ($action) {
                 $service->setCategoria($_POST['categoria']);
                 $service->setDescricao($_POST['descricao']);
                 $service->setPrazoEntrega($_POST['prazoEntrega']);
-                $service->setLinksYoutube($_POST['link']);
+                $service->setLinksYoutube($_POST['linksYoutube']);
                 $service->setDonoServico($_SESSION['id']);
 
-                // Tratamento da imagem
-                if (isset($_FILES['imagemServico']) && $_FILES['imagemServico']['error'] === UPLOAD_ERR_OK) {
-                    $diretorio_upload = '../../uploads/';
-                    $nome_arquivo = basename($_FILES['imagemServico']['name']);
+                if (isset($_FILES['imagens']) && $_FILES['imagens']['error'] === UPLOAD_ERR_OK) {
+                    $diretorio_upload = '../uploads/';
+                    $nome_arquivo = basename($_FILES['imagens']['name']);
                     $caminho_arquivo = $diretorio_upload . $nome_arquivo;
-                    
-                    if (move_uploaded_file($_FILES['imagemServico']['tmp_name'], $caminho_arquivo)) {
+    
+                    // Mover o arquivo para o diretório de upload
+                    if (move_uploaded_file($_FILES['imagens']['tmp_name'], $caminho_arquivo)) {
                         $service->setImagens($nome_arquivo);
                     }
-                } else {
-                    $service->setImagens($existingService->getImagens());
                 }
 
                 if ($serviceDao->updateService($service)) {
@@ -94,11 +92,12 @@ switch ($action) {
         break;
 
     case 'delete_service':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             session_start();
-            $serviceId = $_POST['id'];
+            $serviceId = $_GET['id']; // Obtenha o ID do serviço via GET
             $service = $serviceDao->getService($serviceId);
-
+            $service = $serviceDao->getService($serviceId);
+    
             if ($service && $service->getDonoServico() == $_SESSION['id']) {
                 if ($serviceDao->deleteService($serviceId)) {
                     echo '<script type="text/javascript">
@@ -119,6 +118,7 @@ switch ($action) {
             }
         }
         break;
+        
 
     default:
         echo '<script type="text/javascript">

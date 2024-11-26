@@ -2,32 +2,24 @@
 session_start();
 
 if (isset($_SESSION['id'])) {
-    $id = $_SESSION['id'];
+    $userId = $_SESSION['id'];
 } else {
     header("Location: logintela.php");
     exit();
 }
 
-require('../../Controller/conexao.php');
 
-function listarRegistro($conexao, $id) {
-    $sql = "SELECT * FROM usuario WHERE id=:id";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+require_once '../../Model/UserDaoImpl.php';
+require_once '../../Model/ServiceDaoImpl.php';
 
-function listarServicos($conexao, $idUsuario) {
-    $sql = "SELECT * FROM servico WHERE idDono=:idUsuario";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+$userDao = new UserDaoImpl();
 
-$registro = listarRegistro($conexao, $id);
-$servicos = listarServicos($conexao, $id);
+$registro = $userDao->getUser($userId);
+
+$serviceDao = new ServiceDaoImpl();
+
+$servicos = $serviceDao->getServicesByUser($userId);
+
 
 if ($registro) {
 ?>
@@ -60,7 +52,7 @@ if ($registro) {
 
         <div class="dropdown text-end">
           <a href="nav.php" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
+            <img src="../../uploads/<?php echo $registro->getFotoPerfil(); ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
@@ -91,19 +83,17 @@ if ($registro) {
             <?php foreach ($servicos as $servico) { ?>
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top" onerror="Sem Imagem" width="60%">
+                        <img src="../../uploads/<?php echo $servico->getImagens(); ?>" class="card-img-top" onerror="Sem Imagem" width="60%">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
-                            <p class="card-text"><?php echo htmlspecialchars($servico['descricao']); ?></p>
-                            <p class="card-text"><strong>Categoria:</strong> <?php echo htmlspecialchars($servico['categoria']); ?></p>
-                            <p class="card-text"><strong>Valor:</strong> R$<?php echo htmlspecialchars($servico['valor']); ?></p>
-                            <p class="card-text"><strong>Prazo de Entrega:</strong> <?php echo htmlspecialchars($servico['prazoEntrega']); ?></p>
+                            <h5 class="card-title"><?php echo htmlspecialchars($servico->getTitulo()); ?></h5>
+                            <p class="card-text"><?php echo htmlspecialchars($servico->getDescricao()); ?></p>
+                            <p class="card-text"><strong>Categoria:</strong> <?php echo htmlspecialchars($servico->getCategoria()); ?></p>
+                            <p class="card-text"><strong>Valor:</strong> R$<?php echo htmlspecialchars($servico->getValor()); ?></p>
+                            <p class="card-text"><strong>Prazo de Entrega:</strong> <?php echo htmlspecialchars($servico->getPrazoEntrega()); ?></p>
                             <div class="d-flex flex-wrap gap-2">
-                                <a href="detalhesServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Ver Detalhes</a>
-                                <a href="editarServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-primary">Editar</a>
-                                <a href="../../Model/deleteServico.php?id=<?php echo $servico['id']; ?>" class="btn btn-danger">Excluir</a>
+                                <a href="editarServico.php?id=<?php echo $servico->getId(); ?>" class="btn btn-primary">Editar</a>
+                                <a href="../../Controller/ServiceController.php?action=delete_service&id=<?php echo $servico->getId(); ?>" class="btn btn-danger">Excluir</a>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -118,8 +118,8 @@ if ($registro) {
                     </div>
 
                     <div class="mb-3">
-                        <label for="imagem" class="form-label">Imagem:</label>
-                        <input type="file" name="imagemServico" accept="image/*" class="form-control" required>
+                        <label for="imagens" class="form-label">Imagem:</label>
+                        <input type="file" name="imagens" accept="image/*" class="form-control" required>
                     </div>
 
                     <div class="mb-3">

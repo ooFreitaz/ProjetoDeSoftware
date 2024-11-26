@@ -107,6 +107,17 @@ class ServiceDaoImpl implements ServiceDao {
         }
     }
 
+    public function getServiceByUser($idUsuario, $idServico) {
+        try {
+            $statement = $this->conn->prepare("SELECT * FROM servico WHERE idDono = :idUsuario");
+            $statement->bindParam(':idUsuario', $idUsuario);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, 'Service');
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function listServicesFromOtherUsers($idUsuario) {
         try {
             $statement = $this->conn->prepare("SELECT servico.*, usuario.nome AS nomeDono

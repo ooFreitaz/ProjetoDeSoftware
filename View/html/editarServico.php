@@ -2,35 +2,24 @@
 session_start();
 
 if (isset($_SESSION['id']) && isset($_GET['id'])) {
-    $idUsuario = $_SESSION['id'];
-    $idServico = $_GET['id'];
+    $userId = $_SESSION['id'];
+    $serviceId = $_GET['id'];
 } else {
     header("Location: logintela.php");
     exit();
 }
 
-require('../../Controller/conexao.php');
+require_once '../../Model/UserDaoImpl.php';
+require_once '../../Model/ServiceDaoImpl.php';
 
-function buscarServico($conexao, $idServico, $idUsuario) {
-    $sql = "SELECT * FROM servico WHERE id=:idServico AND idDono=:idUsuario";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bindParam(':idServico', $idServico, PDO::PARAM_INT);
-    $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+$userDao = new UserDaoImpl();
 
-function listarRegistro($conexao, $id) {
-    $sql = "SELECT * FROM usuario WHERE id=:id";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+$registro = $userDao->getUser($userId);
 
+$serviceDao = new ServiceDaoImpl();
 
-$registro = listarRegistro($conexao, $idUsuario);
-$servico = buscarServico($conexao, $idServico, $idUsuario);
+$servico = $serviceDao->getService($serviceId);
+
 
 if ($servico) {
 ?>
@@ -63,7 +52,7 @@ if ($servico) {
 
         <div class="dropdown text-end">
           <a href="nav.php" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../../uploads/<?php echo $registro['fotoPerfil']; ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
+            <img src="../../uploads/<?php echo $registro->getFotoPerfil(); ?>" onerror="this.src='../../uploads/perfil_padrao.jpg'" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
@@ -93,43 +82,43 @@ if ($servico) {
 <div class="container">
     <h2>Editar Serviço</h2>
 
-    <form action="../../Model/updateServico.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="idServico" value="<?php echo htmlspecialchars($servico['id']); ?>">
+    <form action="../../Controller/ServiceController.php?action=update_service" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="idServico" value="<?php echo htmlspecialchars($servico->getId()); ?>">
 
         <div class="form-group">
             <label for="titulo">Título:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($servico['titulo']); ?>" required>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($servico->getTitulo()); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="descricao">Descrição:</label>
-            <textarea class="form-control" id="descricao" name="descricao" required><?php echo htmlspecialchars($servico['descricao']); ?></textarea>
+            <textarea class="form-control" id="descricao" name="descricao" required><?php echo htmlspecialchars($servico->getDescricao()); ?></textarea>
         </div>
 
         <div class="form-group">
             <label for="categoria">Categoria:</label>
-            <input type="text" class="form-control" id="categoria" name="categoria" value="<?php echo htmlspecialchars($servico['categoria']); ?>" required>
+            <input type="text" class="form-control" id="categoria" name="categoria" value="<?php echo htmlspecialchars($servico->getCategoria()); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="valor">Valor:</label>
-            <input type="text" class="form-control" id="valor" name="valor" value="<?php echo htmlspecialchars($servico['valor']); ?>" required>
+            <input type="text" class="form-control" id="valor" name="valor" value="<?php echo htmlspecialchars($servico->getValor()); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="prazoEntrega">Prazo de Entrega:</label>
-            <input type="text" class="form-control" id="prazoEntrega" name="prazoEntrega" value="<?php echo htmlspecialchars($servico['prazoEntrega']); ?>" required>
+            <input type="text" class="form-control" id="prazoEntrega" name="prazoEntrega" value="<?php echo htmlspecialchars($servico->getPrazoEntrega()); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="imagens">Imagem do Serviço:</label>
             <input type="file" class="form-control" id="imagens" name="imagens">
-            <p>Imagem atual: <?php echo htmlspecialchars($servico['imagens']); ?></p>
+            <p>Imagem atual: <?php echo htmlspecialchars($servico->getImagens()); ?></p>
         </div>
 
         <div class="form-group">
             <label for="linksYoutube">Link do Youtube:</label>
-            <input type="text" class="form-control" id="linksYoutube" name="linksYoutube" value="<?php echo htmlspecialchars($servico['linksYoutube']); ?>">
+            <input type="text" class="form-control" id="linksYoutube" name="linksYoutube" value="<?php echo htmlspecialchars($servico->getLinksYoutube()); ?>">
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
