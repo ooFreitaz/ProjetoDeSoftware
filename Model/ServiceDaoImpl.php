@@ -23,6 +23,18 @@ class ServiceDaoImpl implements ServiceDao {
         }
     }
 
+    public function getAllServices() {
+        try {
+            $statement = $this->conn->prepare("SELECT servico.*, usuario.nome AS nomeDono
+                                             FROM servico
+                                             JOIN usuario ON servico.idDono = usuario.id");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function createService($service) {
         try {
             $statement = $this->conn->prepare("INSERT INTO servico (titulo, valor, categoria, descricao, prazoEntrega, imagens, linksYoutube, idDono) 
@@ -107,18 +119,7 @@ class ServiceDaoImpl implements ServiceDao {
         }
     }
 
-    public function getServiceByUser($idUsuario, $idServico) {
-        try {
-            $statement = $this->conn->prepare("SELECT * FROM servico WHERE idDono = :idUsuario");
-            $statement->bindParam(':idUsuario', $idUsuario);
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_CLASS, 'Service');
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
-
-    public function listServicesFromOtherUsers($idUsuario) {
+    public function getServicesFromOtherUsers($idUsuario) {
         try {
             $statement = $this->conn->prepare("SELECT servico.*, usuario.nome AS nomeDono
                                              FROM servico
@@ -127,6 +128,20 @@ class ServiceDaoImpl implements ServiceDao {
             $statement->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    function getServiceDetails($idServico) {
+        try {
+            $statement = $this->conn->prepare(" SELECT servico.*, usuario.nome AS nomeDono, usuario.fotoPerfil AS fotoDono
+                                                FROM servico
+                                                JOIN usuario ON servico.idDono = usuario.id
+                                                WHERE servico.id = :idServico");
+            $statement->bindParam(':idServico', $idServico, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

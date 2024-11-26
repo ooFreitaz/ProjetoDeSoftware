@@ -4,21 +4,18 @@ session_start();
 
 if (isset($_SESSION['id'])) {
     $userId = $_SESSION['id'];
+    $serviceId = $_GET['id'];
+    $servicePrice = $_GET['valor'];
 } else {
     header("Location: logintela.php");
     exit();
 }
 
 require_once '../../Model/UserDaoImpl.php';
-require_once '../../Model/ServiceDaoImpl.php';
 
 $userDao = new UserDaoImpl();
 
 $registro = $userDao->getUser($userId);
-
-$serviceDao = new ServiceDaoImpl();
-
-$servicos = $serviceDao->getServicesFromOtherUsers($userId);
 
 
 if ($registro) {
@@ -30,7 +27,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem Vindo!</title>
-    <link rel="stylesheet" href="../css/naaav.css">
+    <link rel="stylesheet" href="../css/cartao.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -43,7 +40,7 @@ if ($registro) {
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="nav.php" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="nav.php" class="nav-link px-2 link-body-emphasis">Home</a></li>
           <li><a href="contato.php" class="nav-link px-2 link-body-emphasis">Contato</a></li>
           <li><a href="sobre.php" class="nav-link px-2 link-body-emphasis">Sobre</a></li>
           <li><a href="faq.php" class="nav-link px-2 link-body-emphasis">FAQ</a></li>
@@ -57,8 +54,7 @@ if ($registro) {
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
             <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
             <li><a class="dropdown-item" href="meusServicos.php">Meus Serviços</a></li>
-            <li><a class="dropdown-item" href="servicosComprados.php">Serviços Comprados</a></li>
-            <li><a class="dropdown-item" href="servicosComprados.php">Serviços Vendidos</a></li>
+            <li><a class="dropdown-item" href="favoritos.php">Favoritos</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>
@@ -71,30 +67,54 @@ if ($registro) {
     <input type="hidden" name="logout" value="1">
 </form>
 
-<div class="container">
-    <?php if (!empty($servicos)) { ?>
-        <div class="row">
-            <?php foreach ($servicos as $servico) { ?>
-              <div class="col-md-3">
-                  <a href="detalhesServico.php?id=<?php echo $servico['id']; ?>">
-                      <div class="card mb-5 shadow-sm">
-                          <img src="../../uploads/<?php echo $servico['imagens']; ?>" class="card-img-top">
-                          <div class="card-body">
-                              <p class="nomeDono"><?php echo htmlspecialchars($servico['nomeDono']); ?></p>
-                              <h5 class="titulo"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
-                              <p class="preco">R$<?php echo htmlspecialchars($servico['valor']); ?></p>
-                              <p class="dataEntrega"><?php echo htmlspecialchars($servico['prazoEntrega']); ?></p>
-                          </div>
-                      </div>
-                  </a>
-              </div>
-            <?php } ?>
+<div class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <form action="../../Controller/ServiceController.php?action=create_service" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
+                <h1 class="text-center">Dados de pagamento</h1>
+                <div class="formContent">
+                    <div class="mb-3">
+                        <label for="titular" class="form-label">Nome do Titular:</label>
+                        <input type="text" name="titular" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cpf" class="form-label">CPF do Titular:</label>
+                        <input type="text" id="cpf" class="form-control" placeholder="000.000.000-00" maxlength="14" oninput="maskcpf()" name="cpf" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="numero" class="form-label">Número do Cartão:</label>
+                        <input type="text" name="numero" class="form-control" required placeholder="0000.0000.0000.0000" maxlength="16">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Código de Verificação:</label>
+                        <input type="number" name="codigo" class="form-control" required placeholder="000">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data de Expiração:</label>
+                        <input type="text" name="codigo" class="form-control" required placeholder="mm/aa">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="valor" class="form-label">Valor: R$<?php echo htmlspecialchars($servicePrice);?> </label>
+            
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="custom-btn">Finalizar pagamento</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    <?php } else { ?>
-        <p>Nenhum serviço encontrado.</p>
-    <?php } ?>
+    </div>
 </div>
 
+
+
+<script src="../js/funcoes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    margin: 0;
+    background-color: #f8f9fa;
+    font-family: 'Quicksand', sans-serif;}
+
+.rounded-circle {
+    object-fit: cover;
+}
+
+.serviceImg{border-radius: 20px;}
+
+.row{margin-top: 10vh !important;
+    margin-bottom: 23vh;}
+
+.serviceInfo{
+    padding: 5% 10%;
+    border-radius: 5px;
+    border: solid 1px #0f4c81;
+    background-color: #f4f4f5;
+    font-family: 'Quicksand', sans-serif;}
+
+
+.form-label
+{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px !important;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.form-title{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 28px !important;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.custom-btn {
+    background-color: #0000ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+
+}
+
+a {
+    text-decoration: none !important; /* Remove sublinhado dos links */
+    color: inherit !important; /* Mantém a cor original do texto */
+}

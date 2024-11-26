@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: aqua;
+}
+
+.card {
+    min-height: 300px; /* Altura mínima para todos os cards serem do mesmo tamanho */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.card-title, .card-text {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none !important; /* Remove sublinhado dos links */
+    color: inherit !important; /* Mantém a cor original do texto */
+}
+
+.card img {
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+    height: 200px; /* Define uma altura consistente para as imagens */
+    width: 100%; /* Imagens ocupam toda a largura do card */
+}
+
+
+.rounded-circle{
+    object-fit: cover;
+}
+
+
+.card:hover {
+    transform: translateY(-5px); /* Move o card levemente para cima */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao card */
+}
+

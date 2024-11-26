@@ -73,57 +73,76 @@ if ($servico) {
   </form>
 
 
+<div class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <form action="../../Controller/ServiceController.php?action=update_service" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
 
+              <input type="hidden" name="idServico" value="<?php echo htmlspecialchars($servico->getId()); ?>">
 
+                <h1 class="text-center">Edite seu Serviço</h1>
+                <div class="formContent">
+                    <div class="mb-3">
+                      <label for="titulo" class="form-label">Título:</label>
+                      <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($servico->getTitulo()); ?>" required>
+                    </div>
 
+                    <div class="mb-3">
+                    <label for="valor" class="form-label">Valor:</label>
+                    <input type="text" class="form-control" id="valor" name="valor" value="<?php echo htmlspecialchars($servico->getValor()); ?>" required>
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria:</label>
+                        <select name="categoria" id="categoria" name="categoria" value="<?php echo htmlspecialchars($servico->getCategoria()); ?>" required class="form-select">
+                            <option value="<?php echo htmlspecialchars($servico->getCategoria());?>"><?php echo htmlspecialchars($servico->getCategoria()); ?></option>
+                            <option value="Animacao">Animação</option>
+                            <option value="Vlog">Daily Vlogs</option>
+                            <option value="Gameplay">Gameplays</option>
+                            <option value="Reels">Reels</option>
+                        </select>
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="prazo" class="form-label">Prazo de Entrega:</label>
+                        <select name="prazoEntrega" id="prazo" required class="form-select">
+                            <option value="<?php echo htmlspecialchars($servico->getPrazoEntrega()); ?>"><?php echo htmlspecialchars($servico->getPrazoEntrega());?></option>
+                            <option value="1 dia">1 dia</option>
+                            <option value="2 dias">2 dias</option>
+                            <option value="3 dias">3 dias</option>
+                            <option value="4 dias">4 dias</option>
+                            <option value="5 dias">5 dias</option>
+                            <option value="10 dias">10 dias</option>
+                            <option value="20 dias">20 dias</option>
+                        </select>
+                    </div>
 
-<div class="container">
-    <h2>Editar Serviço</h2>
+                    <div class="mb-3">
+                      <label for="descricao" class="form-label">Descrição:</label>
+                      <textarea class="form-control" id="descricao" name="descricao" required><?php echo htmlspecialchars($servico->getDescricao()); ?></textarea>
+                    </div>
 
-    <form action="../../Controller/ServiceController.php?action=update_service" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="idServico" value="<?php echo htmlspecialchars($servico->getId()); ?>">
+                    <div class="mb-3">
+                      <label for="imagens" class="form-label">Imagem do Serviço:</label>
+                      <input type="file" class="form-control" id="imagens" name="imagens">
+                      <p class="form-label">Imagem atual: <?php echo htmlspecialchars($servico->getImagens()); ?></p>
+                    </div>
 
-        <div class="form-group">
-            <label for="titulo">Título:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($servico->getTitulo()); ?>" required>
+                    <div class="mb-3">
+                      <label for="linksYoutube" class="form-label">Link do Youtube:</label>
+                      <input type="text" class="form-control" id="linksYoutube" name="linksYoutube" value="<?php echo htmlspecialchars($servico->getLinksYoutube()); ?>">
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="custom-btn">Salvar Alterações</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <textarea class="form-control" id="descricao" name="descricao" required><?php echo htmlspecialchars($servico->getDescricao()); ?></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="categoria">Categoria:</label>
-            <input type="text" class="form-control" id="categoria" name="categoria" value="<?php echo htmlspecialchars($servico->getCategoria()); ?>" required>
-        </div>
-
-        <div class="form-group">
-            <label for="valor">Valor:</label>
-            <input type="text" class="form-control" id="valor" name="valor" value="<?php echo htmlspecialchars($servico->getValor()); ?>" required>
-        </div>
-
-        <div class="form-group">
-            <label for="prazoEntrega">Prazo de Entrega:</label>
-            <input type="text" class="form-control" id="prazoEntrega" name="prazoEntrega" value="<?php echo htmlspecialchars($servico->getPrazoEntrega()); ?>" required>
-        </div>
-
-        <div class="form-group">
-            <label for="imagens">Imagem do Serviço:</label>
-            <input type="file" class="form-control" id="imagens" name="imagens">
-            <p>Imagem atual: <?php echo htmlspecialchars($servico->getImagens()); ?></p>
-        </div>
-
-        <div class="form-group">
-            <label for="linksYoutube">Link do Youtube:</label>
-            <input type="text" class="form-control" id="linksYoutube" name="linksYoutube" value="<?php echo htmlspecialchars($servico->getLinksYoutube()); ?>">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-    </form>
+    </div>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

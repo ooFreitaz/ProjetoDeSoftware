@@ -91,11 +91,11 @@ if ($registro) {
                     <div class="mb-3">
                         <label for="categoria" class="form-label">Categoria:</label>
                         <select name="categoria" id="categoria" required class="form-select">
-                            <option value="select">Selecione uma categoria</option>
-                            <option value="animacao">Animação</option>
-                            <option value="vlog">Daily Vlogs</option>
-                            <option value="gameplay">Gameplays</option>
-                            <option value="reel">Reels</option>
+                            <option value="Select">Selecione uma categoria</option>
+                            <option value="Animacao">Animação</option>
+                            <option value="Vlog">Daily Vlogs</option>
+                            <option value="Gameplay">Gameplays</option>
+                            <option value="Reels">Reels</option>
                         </select>
                     </div>
 

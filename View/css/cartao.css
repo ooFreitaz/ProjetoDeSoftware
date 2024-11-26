@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    margin: 0;
+    background-color: #f8f9fa;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.rounded-circle {
+    object-fit: cover;
+}
+
+/* Ajuste de campo de formulário e seletores */
+.form-control, .form-select {
+    border-radius: 25px !important;
+    padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+    transition: .3s;
+    font-size: 17px !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border:1px solid #0000ff !important; 
+    box-shadow: none !important;
+}
+
+/* Botão de criação de serviço */
+.custom-btn {
+    background-color: #0000ff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.btn-primary:hover, .custom-btn:hover {
+    background-color: rgb(7, 52, 80);
+}
+
+/* Título centralizado */
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Textarea */
+textarea.form-control {
+    height: 150px;
+}
+
+/* Estilo para o formulário */
+.col-lg-6, .col-md-8 {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .custom-btn {
+        width: 100% !important;
+        font-size: 14px;
+        padding: 12px 0;
+    }
+
+    .col-lg-6, .col-md-8 {
+        padding: 20px;
+    }
+}
+
+/* Borda e espaçamento para o contêiner */
+.container.my-2 {
+    padding: 30px;
+}
+
+.form-label
+{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 17px !important;
+}
+   

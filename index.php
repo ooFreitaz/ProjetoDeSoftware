@@ -1,10 +1,18 @@
+<?php
+require_once 'Model/ServiceDaoImpl.php';
+
+$serviceDao = new ServiceDaoImpl();
+
+$servicos = $serviceDao->getAllServices();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem Vindo!</title>
-    <link rel="stylesheet" href="View/css/index.css">
+    <link rel="stylesheet" href="View/css/indexs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
 </head>
@@ -30,6 +38,31 @@
       </div>
     </header>
 </div>
+
+<div class="container">
+    <?php if (!empty($servicos)) { ?>
+        <div class="row">
+            <?php foreach ($servicos as $servico) { ?>
+              <div class="col-md-3">
+                  <a href="View/html/detalhesServico.php?id=<?php echo $servico['id']; ?>">
+                      <div class="card mb-5 shadow-sm">
+                          <img src="uploads/<?php echo $servico['imagens']; ?>" class="card-img-top">
+                          <div class="card-body">
+                              <p class="nomeDono"><?php echo htmlspecialchars($servico['nomeDono']); ?></p>
+                              <h5 class="titulo"><?php echo htmlspecialchars($servico['titulo']); ?></h5>
+                              <p class="preco">R$<?php echo htmlspecialchars($servico['valor']); ?></p>
+                              <p class="dataEntrega"><?php echo htmlspecialchars($servico['prazoEntrega']); ?></p>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+            <?php } ?>
+        </div>
+    <?php } else { ?>
+        <p>Nenhum serviço encontrado.</p>
+    <?php } ?>
+</div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
