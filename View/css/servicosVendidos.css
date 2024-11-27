@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
+body{width: 100%;
+    margin: 0;
+    background-color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.rounded-circle{
+    object-fit: cover;
+}
+
+
+.myServicesContent
+{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.myServicesContent > h2
+{
+    margin: 4vh 0 ;
+}
+
+.card{border: solid 2px #0f4c81 !important;}

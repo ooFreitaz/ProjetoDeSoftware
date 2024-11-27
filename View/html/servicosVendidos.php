@@ -10,15 +10,15 @@ if (isset($_SESSION['id'])) {
 
 
 require_once '../../Model/UserDaoImpl.php';
-require_once '../../Model/ServiceDaoImpl.php';
+require_once '../../Model/OrderDaoImpl.php';
 
 $userDao = new UserDaoImpl();
 
 $registro = $userDao->getUser($userId);
 
-$serviceDao = new ServiceDaoImpl();
+$orderDao = new OrderDaoImpl();
 
-$servicos = $serviceDao->getServicesByUser($userId);
+$orders = $orderDao->getOrdersBySeller($userId);
 
 
 if ($registro) {
@@ -30,7 +30,7 @@ if ($registro) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" type="text/css" href="../css/meusServicos.css">
+    <link rel="stylesheet" type="text/css" href="../css/servicosVendidos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -57,7 +57,7 @@ if ($registro) {
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
             <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
-            <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
+            <li><a class="dropdown-item" href="meusServicos.php">Meus Serviços</a></li>
             <li><a class="dropdown-item" href="servicosComprados.php">Minhas Compras</a></li>
             <li><a class="dropdown-item" href="servicosVendidos.php">Minhas Vendas</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -78,30 +78,25 @@ if ($registro) {
 
  <div class="container">
     <div class="myServicesContent">
-      <h2>Meus Serviços</h2>
-      <?php if (!empty($servicos)) { ?>
+      <h2>Minhas Vendas</h2>
+      <?php if (!empty($orders)) { ?>
         <div class="row">
-            <?php foreach ($servicos as $servico) { ?>
+            <?php foreach ($orders as $order) { ?>
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="../../uploads/<?php echo $servico->getImagens(); ?>" class="card-img-top" onerror="Sem Imagem" width="60%">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($servico->getTitulo()); ?></h5>
-                            <p class="card-text"><?php echo htmlspecialchars($servico->getDescricao()); ?></p>
-                            <p class="card-text"><strong>Categoria:</strong> <?php echo htmlspecialchars($servico->getCategoria()); ?></p>
-                            <p class="card-text"><strong>Valor:</strong> R$<?php echo htmlspecialchars($servico->getValor()); ?></p>
-                            <p class="card-text"><strong>Prazo de Entrega:</strong> <?php echo htmlspecialchars($servico->getPrazoEntrega()); ?></p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="editarServico.php?id=<?php echo $servico->getId(); ?>" class="btn btn-primary">Editar</a>
-                                <a href="../../Controller/ServiceController.php?action=delete_service&id=<?php echo $servico->getId(); ?>" class="btn btn-danger">Excluir</a>
-                            </div>
+                            <h5 class="card-title"><strong>Id do Pedido:</strong><?php echo htmlspecialchars($order->getIdCompra()); ?></h5>
+                            <p class="card-text"><strong>Id do Serviço:</strong><?php echo htmlspecialchars($order->getIdServico()); ?></p>
+                            <p class="card-text"><strong>Data do Pedido:</strong><?php echo htmlspecialchars($order->getDataCompra()); ?></p>
+                            <p class="card-text"><strong>Valor final do Pedido:</strong> R$<?php echo htmlspecialchars($order->getValorFinal()); ?></p>
+                           
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
       <?php } else { ?>
-        <p>Você ainda não possui serviços cadastrados.</p>
+        <p>Você ainda não possui vendas feitas.</p>
       <?php } ?>
     </div>
 </div>

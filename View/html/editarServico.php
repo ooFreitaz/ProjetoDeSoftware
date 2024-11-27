@@ -58,7 +58,8 @@ if ($servico) {
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
             <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
             <li><a class="dropdown-item" href="#">Meus Serviços</a></li>
-            <li><a class="dropdown-item" href="favoritos.php">Favoritos</a></li>
+            <li><a class="dropdown-item" href="servicosComprados.php">Minhas Compras</a></li>
+            <li><a class="dropdown-item" href="servicosVendidos.php">Minhas Vendas</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>

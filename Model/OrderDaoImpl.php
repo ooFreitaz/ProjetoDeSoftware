@@ -21,27 +21,20 @@ class OrderDaoImpl implements OrderDao {
             $statement->bindValue(':idServico', $order->getIdServico());
             $statement->bindValue(':dataCompra', $order->getDataCompra());
             $statement->bindValue(':valorFinal', $order->getValorFinal());
-            return $statement->execute();
+            $statement->execute();
+
+            return $this->conn->lastInsertId(); 
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return false;
         }
     }
 
-    public function getOrder($idCompra) {
-        try {
-            $statement = $this->conn->prepare("SELECT * FROM compra WHERE idCompra = :idCompra");
-            $statement->bindValue(':idCompra', $idCompra);
-            $statement->execute();
-            return $statement->fetchObject('Order');
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
 
-    public function getAllOrders() {
+    public function getOrdersByBuyer($idComprador) {
         try {
-            $statement = $this->conn->prepare("SELECT * FROM compra");
+            $statement = $this->conn->prepare("SELECT * FROM compra WHERE idComprador = :idComprador");
+            $statement->bindValue(':idComprador', $idComprador);
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_CLASS, 'Order');
         } catch (PDOException $e) {
@@ -49,25 +42,16 @@ class OrderDaoImpl implements OrderDao {
         }
     }
 
-    public function getOrdersByUser($idUsuario) {
+    public function getOrdersBySeller($idVendedor) {
         try {
-            $statement = $this->conn->prepare("SELECT * FROM compra WHERE idComprador = :idUsuario OR idVendedor = :idUsuario");
-            $statement->bindValue(':idUsuario', $idUsuario);
+            $statement = $this->conn->prepare("SELECT * FROM compra WHERE idVendedor = :idVendedor");
+            $statement->bindValue(':idVendedor', $idVendedor);
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_CLASS, 'Order');
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
-
-    public function deleteOrder($idCompra) {
-        try {
-            $statement = $this->conn->prepare("DELETE FROM compra WHERE idCompra = :idCompra");
-            $statement->bindValue(':idCompra', $idCompra);
-            return $statement->execute();
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
+ 
 }
 ?>

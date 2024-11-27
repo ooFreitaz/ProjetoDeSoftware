@@ -6,6 +6,7 @@ if (isset($_SESSION['id'])) {
     $userId = $_SESSION['id'];
     $serviceId = $_GET['id'];
     $servicePrice = $_GET['valor'];
+    $serviceOwner = $_GET['idDono'];
 } else {
     header("Location: logintela.php");
     exit();
@@ -54,7 +55,8 @@ if ($registro) {
             <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
             <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
             <li><a class="dropdown-item" href="meusServicos.php">Meus Serviços</a></li>
-            <li><a class="dropdown-item" href="favoritos.php">Favoritos</a></li>
+            <li><a class="dropdown-item" href="servicosComprados.php">Minhas Compras</a></li>
+            <li><a class="dropdown-item" href="servicosVendidos.php">Minhas Vendas</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
           </ul>
@@ -70,7 +72,7 @@ if ($registro) {
 <div class="container my-2">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
-            <form action="../../Controller/ServiceController.php?action=create_service" method="post" id="RegisterServiceForm" enctype="multipart/form-data">
+            <form action="../../Controller/OrderController.php?action=create_order" method="post" id="RegisterOrderForm" enctype="multipart/form-data">
                 <h1 class="text-center">Dados de pagamento</h1>
                 <div class="formContent">
                     <div class="mb-3">
@@ -90,7 +92,7 @@ if ($registro) {
 
                     <div class="mb-3">
                         <label for="codigo" class="form-label">Código de Verificação:</label>
-                        <input type="number" name="codigo" class="form-control" required placeholder="000">
+                        <input type="number" name="codigo" class="form-control" required placeholder="000" maxlength="3">
                     </div>
 
                     <div class="mb-3">
@@ -100,7 +102,9 @@ if ($registro) {
                     
                     <div class="mb-3">
                         <label for="valor" class="form-label">Valor: R$<?php echo htmlspecialchars($servicePrice);?> </label>
-            
+                        <input type="hidden" name="valorFinal" value="<?php echo htmlspecialchars($servicePrice);?>">
+                        <input type="hidden" name="idServico" value="<?php echo htmlspecialchars($serviceId);?>">
+                        <input type="hidden" name="idVendedor" value="<?php echo htmlspecialchars($serviceOwner);?>">
                     </div>
 
                     <div class="d-grid">

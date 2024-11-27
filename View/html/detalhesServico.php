@@ -59,7 +59,8 @@ if ($detalhesServico) {
                     <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
                     <li><a class="dropdown-item" href="criarServico.php">Criar Serviço</a></li>
                     <li><a class="dropdown-item" href="meusServicos.php">Meus Serviços</a></li>
-                    <li><a class="dropdown-item" href="favoritos.php">Favoritos</a></li>
+                    <li><a class="dropdown-item" href="servicosComprados.php">Minhas Compras</a></li>
+                    <li><a class="dropdown-item" href="servicosVendidos.php">Minhas Vendas</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
                 </ul>
@@ -89,7 +90,7 @@ if ($detalhesServico) {
                 <p class="form-label"><strong>Prazo de Entrega:</strong> <?php echo htmlspecialchars($detalhesServico['prazoEntrega']); ?></p>
                 <p class="form-label"><strong>Valor Final:</strong> R$<?php echo htmlspecialchars($detalhesServico['valor'] * 1.05); ?> </p>
                 <p>Taxa de 5% já aplicada</p>
-                <a href="cartao.php?id=<?php echo $serviceId; ?>&valor=<?php echo htmlspecialchars($detalhesServico['valor'] * 1.05); ?>"><button class="custom-btn" href="cartao.php">Finalizar Compra</button></a>
+                <a href="cartao.php?id=<?php echo $serviceId; ?>&valor=<?php echo htmlspecialchars($detalhesServico['valor'] * 1.05); ?>&idDono=<?php echo $detalhesServico['idDono']; ?>"><button class="custom-btn" href="cartao.php">Finalizar Compra</button></a>
             </div>
         </div>
     </div>
