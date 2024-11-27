@@ -1,5 +1,5 @@
 Projeto de Conclusão de Curso Cotemig Barroca 3D1 2024
-Diagrama de Classe: ![image](https://github.com/user-attachments/assets/6248073a-6456-4160-bab1-3950f4b6667c)
+
 
 SPRINT 1: https://youtu.be/pwhKpqHi5xE
 
@@ -21,4 +21,5 @@ SPRINT 9: https://youtu.be/F8LOQtFjjs0
 
 SPRINT 10: https://youtu.be/GemknrU0xtE
 
+Diagrama de Classe: ![image](https://github.com/user-attachments/assets/6248073a-6456-4160-bab1-3950f4b6667c)
 
